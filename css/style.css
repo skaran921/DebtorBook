@@ -83,3 +83,73 @@ button {
   color: #fafafa;
   font-size: 18px;
 }
+
+.alert,
+.alert-danger {
+  border-radius: 6px;
+  text-align: left;
+  border: 0px;
+  transition: 0.5s linear;
+  display: none;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  transition: 0.5s ease-in-out;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active-link {
+  background-color: #0f23ca;
+  color: white;
+}
+
+.sidebar a:hover:not(.active-link) {
+  background-color: #fafafa;
+  transition: 0.3s ease-in;
+}
+
+div.sidebarContent {
+  margin-left: 200px;
+  /* padding: 1px 16px; */
+  height: auto;
+}
+
+@media screen and (max-width: 700px) {
+  nav {
+    display: none !important;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.sidebarContent {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  nav {
+    display: none !important;
+  }
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
