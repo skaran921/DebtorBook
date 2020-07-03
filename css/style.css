@@ -51,7 +51,19 @@ div::-webkit-scrollbar-thumb:hover {
   justify-content: center;
   height: 80vh;
 }
+/* bg colors */
+.dark-white {
+  background-color: #fafafa;
+}
 
+.blue {
+  background-color: #0f23ca;
+}
+
+.grey {
+  background-color: #a7a6ac;
+}
+/* bg colors */
 /*text colors */
 .gray-text {
   color: #a7a6ac;
@@ -117,14 +129,17 @@ button {
 }
 
 .sidebar a:hover:not(.active-link) {
-  background-color: #fafafa;
+  background-color: #f0f0f0;
   transition: 0.3s ease-in;
 }
 
 div.sidebarContent {
   margin-left: 200px;
-  /* padding: 1px 16px; */
-  height: auto;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: auto;
+  background-color: #fafafa;
+  transition: 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 700px) {
@@ -137,7 +152,7 @@ div.sidebarContent {
     position: relative;
   }
   .sidebar a {
-    float: left;
+    float: none;
   }
   div.sidebarContent {
     margin-left: 0;
@@ -152,4 +167,45 @@ div.sidebarContent {
     text-align: center;
     float: none;
   }
+}
+
+.dashboard-card {
+  padding: 10px 15px;
+  background-color: #fff;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #fefefe;
+  transition: 0.5s ease-in;
+}
+
+.dashboard-card:hover {
+  transition: 0.3s ease-in;
+  box-shadow: 0px 1px 3px #d0d0d0;
+  cursor: pointer;
+  transform: translate(6px);
+}
+
+.circle-avatar {
+  width: 3rem;
+  color: #a7a6ac;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.dashboard-card-icon {
+  font-size: 2.5rem;
+}
+
+.vr {
+  width: 1px;
+  height: 60px;
+  background-color: #ddd;
 }
