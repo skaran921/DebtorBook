@@ -141,9 +141,8 @@ session_start();
              <?php
                 }else{
                   // authenticate user
-                  if($row= $result->fetch_assoc()){
-                      $encoded_in_base64_user_id = base64_encode(strval($row["USER_ID"]));
-                      $_SESSION["user_token"] = $encoded_in_base64_user_id;  
+                  if($row= $result->fetch_assoc()){                     
+                      $_SESSION["user_auth_id"] = $row["USER_ID"];  
                       header("Location:./user");                    
                   }
                   ?>

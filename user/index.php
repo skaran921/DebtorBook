@@ -9,6 +9,11 @@
     <title>Dashboard - Debtor Book</title>
     <?php 
      include "../externalCss.php";     
+     include "../api/db.php";
+     include "../api/User.php";
+     $userId = $_SESSION["user_auth_id"];
+     $user = new User($conn);
+     $userNameArr =$user->getUserNameArray($userId);
     ?>
 </head>
 <body>    
@@ -36,8 +41,14 @@
                                     <!-- text -row -->
                                     <div class="dashboard-card-text-row row">
                                         <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
-                                            <center><div class="circle-avatar">KS</div>    </center>                                       
-                                            Karan Soni
+                                            <center>
+                                                <div class="circle-avatar">
+                                                   <?php echo $userNameArr["USER_FIRST_NAME"][0].$userNameArr["USER_LAST_NAME"][0] ?>
+                                                </div>  
+                                            </center>                                       
+                                            <?php 
+                                              echo $userNameArr["USER_FIRST_NAME"]." ".$userNameArr["USER_LAST_NAME"];                                           
+                                            ?>
                                         </div>
                                         
                                     </div>

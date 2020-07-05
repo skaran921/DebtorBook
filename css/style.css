@@ -73,27 +73,35 @@ div::-webkit-scrollbar-thumb:hover {
   color: #0f23ca;
 }
 
-input {
+form input,
+form textarea {
   display: block;
   width: 100%;
   padding: 12px 20px;
   border: none;
   border-radius: 22px;
 }
-input:focus,
-button:focus {
+form input:focus,
+form button:focus,
+form textarea:focus {
   transition: 0.3s ease-in;
   outline: none;
   box-shadow: 0 0px 2px #0f23ca;
 }
 
-button {
+form button {
   padding: 12px 15px;
   border: none;
   border-radius: 22px;
   background-color: #0f23ca;
   color: #fafafa;
   font-size: 18px;
+}
+
+form button:hover {
+  transition: 0.3s ease-in;
+  opacity: 0.9;
+  box-shadow: 0 1px 2px #a7a6ac;
 }
 
 .alert,
@@ -208,4 +216,111 @@ div.sidebarContent {
   width: 1px;
   height: 60px;
   background-color: #ddd;
+}
+
+/* datable customisation*/
+
+#debtorsTable_wrapper input[type="search"] {
+  border: none !important;
+  padding: 10px 15px;
+  border-radius: 12px;
+}
+
+#debtorsTable_wrapper select {
+  border: none !important;
+  padding: 6px 15px;
+  border-radius: 12px;
+}
+#debtorsTable_wrapper input:focus,
+#debtorsTable_wrapper select:focus {
+  transition: 0.3s ease-in;
+  outline: none;
+  box-shadow: 0 0px 2px #f1f1f1;
+}
+
+.current {
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  background: #fff !important;
+  padding: 6px 16px !important;
+  border-radius: 20% !important;
+}
+.paginate_button {
+  border: none !important;
+  background: #fff !important;
+}
+
+.dt-button {
+  border: none !important;
+  background-color: blue !important;
+  box-shadow: 0.3px 1px 1px #d0d0d0;
+  border-radius: 4px !important;
+}
+/* datable customisation*/
+
+.addBtn {
+  background-color: #0f23ca;
+  color: #fafafa;
+  transition: 0.5s;
+}
+
+.addBtn:hover {
+  transform: translateX(2px);
+  color: #fff;
+}
+
+.capitallize {
+  text-transform: capitalize;
+}
+
+tbody tr td,
+thead tr th {
+  text-align: left;
+}
+
+.table td {
+  vertical-align: middle !important;
+  padding: 10px 15px !important;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+  border: none !important;
+  padding: 10px 15px !important;
+}
+
+.table.dataTable.no-footer {
+  border: none !important;
+  box-shadow: 0px 1px 4px #d0d0d0;
+}
+
+.table.dataTable .odd {
+  background-color: #fafafa !important;
+  border: none !important;
+}
+
+.table.dataTable .even {
+  border: none !important;
+}
+
+table.dataTable.row-border tbody th,
+table.dataTable.row-border tbody td,
+table.dataTable.display tbody th,
+table.dataTable.display tbody td {
+  border: none !important;
+}
+
+.text-rem1 {
+  font-size: 1rem;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #fafafa;
+}
+
+.modal-content {
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
 }
