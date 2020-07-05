@@ -51,7 +51,19 @@ div::-webkit-scrollbar-thumb:hover {
   justify-content: center;
   height: 80vh;
 }
+/* bg colors */
+.dark-white {
+  background-color: #fafafa;
+}
 
+.blue {
+  background-color: #0f23ca;
+}
+
+.grey {
+  background-color: #a7a6ac;
+}
+/* bg colors */
 /*text colors */
 .gray-text {
   color: #a7a6ac;
@@ -61,27 +73,64 @@ div::-webkit-scrollbar-thumb:hover {
   color: #0f23ca;
 }
 
-input {
+.bootstrap-select .dropdown-toggle {
+  display: block !important;
+  width: 100% !important;
+  padding: 12px 20px !important;
+  border: none !important;
+  border-radius: 22px !important;
+  background-color: #fff !important;
+}
+
+.form-control {
+  border-radius: 22px !important;
+}
+
+form input,
+form textarea {
   display: block;
   width: 100%;
   padding: 12px 20px;
   border: none;
   border-radius: 22px;
 }
-input:focus,
-button:focus {
-  transition: 0.3s ease-in;
-  outline: none;
-  box-shadow: 0 0px 2px #0f23ca;
+form input:focus,
+form button:focus,
+form textarea:focus,
+.bootstrap-select .dropdown-toggle:focus,
+.bootstrap-select
+  > select.mobile-device:focus
+  + .dropdown-toggle
+  .form-control:focus {
+  transition: 0.3s ease-in !important;
+  outline: none !important;
+  box-shadow: 0 0px 2px #0f23ca !important;
+  outline-offset: 0px !important;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hove {
+  color: #111 !important;
+}
+.bootstrap-select .dropdown-toggle:focus,
+.bootstrap-select > select.mobile-device:focus + .dropdown-toggle {
+  outline: none !important;
 }
 
-button {
+form button {
   padding: 12px 15px;
   border: none;
   border-radius: 22px;
   background-color: #0f23ca;
   color: #fafafa;
   font-size: 18px;
+}
+
+form button:hover {
+  transition: 0.3s ease-in;
+  opacity: 0.9;
+  box-shadow: 0 1px 2px #a7a6ac;
 }
 
 .alert,
@@ -117,14 +166,17 @@ button {
 }
 
 .sidebar a:hover:not(.active-link) {
-  background-color: #fafafa;
+  background-color: #f0f0f0;
   transition: 0.3s ease-in;
 }
 
 div.sidebarContent {
   margin-left: 200px;
-  /* padding: 1px 16px; */
-  height: auto;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: auto;
+  background-color: #fafafa;
+  transition: 0.5s ease-in-out;
 }
 
 @media screen and (max-width: 700px) {
@@ -137,7 +189,7 @@ div.sidebarContent {
     position: relative;
   }
   .sidebar a {
-    float: left;
+    float: none;
   }
   div.sidebarContent {
     margin-left: 0;
@@ -152,4 +204,157 @@ div.sidebarContent {
     text-align: center;
     float: none;
   }
+}
+
+.dashboard-card {
+  padding: 10px 15px;
+  background-color: #fff;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #fefefe;
+  transition: 0.5s ease-in;
+}
+
+.dashboard-card:hover {
+  transition: 0.3s ease-in;
+  box-shadow: 0px 1px 3px #d0d0d0;
+  cursor: pointer;
+  transform: translate(6px);
+}
+
+.circle-avatar {
+  width: 3rem;
+  color: #a7a6ac;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.dashboard-card-icon {
+  font-size: 2.5rem;
+}
+
+.vr {
+  width: 1px;
+  height: 60px;
+  background-color: #ddd;
+}
+
+/* datable customisation*/
+
+#debtorsTable_wrapper input[type="search"] {
+  border: none !important;
+  padding: 10px 15px;
+  border-radius: 12px;
+}
+
+#debtorsTable_wrapper select {
+  border: none !important;
+  padding: 6px 15px;
+  border-radius: 12px;
+}
+#debtorsTable_wrapper input:focus,
+#debtorsTable_wrapper select:focus {
+  transition: 0.3s ease-in;
+  outline: none;
+  box-shadow: 0 0px 2px #f1f1f1;
+}
+
+.current {
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  background: #fff !important;
+  padding: 6px 16px !important;
+  border-radius: 20% !important;
+}
+.paginate_button {
+  border: none !important;
+  background: #fff !important;
+}
+
+.dt-button {
+  border: none !important;
+  background-color: blue !important;
+  box-shadow: 0.3px 1px 1px #d0d0d0;
+  border-radius: 4px !important;
+}
+/* datable customisation*/
+
+.addBtn {
+  background-color: #0f23ca;
+  color: #fafafa;
+  transition: 0.5s;
+}
+
+.addBtn:hover {
+  transform: translateX(2px);
+  color: #fff;
+}
+
+.capitallize {
+  text-transform: capitalize;
+}
+
+tbody tr td,
+thead tr th {
+  text-align: left;
+}
+
+.table td {
+  vertical-align: middle !important;
+  padding: 10px 15px !important;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+  border: none !important;
+  padding: 10px 15px !important;
+}
+
+.table.dataTable.no-footer {
+  border: none !important;
+  box-shadow: 0px 1px 4px #d0d0d0;
+}
+
+.table.dataTable .odd {
+  background-color: #fafafa !important;
+  border: none !important;
+}
+
+.table.dataTable .even {
+  border: none !important;
+}
+
+table.dataTable.row-border tbody th,
+table.dataTable.row-border tbody td,
+table.dataTable.display tbody th,
+table.dataTable.display tbody td {
+  border: none !important;
+}
+
+.text-rem1 {
+  font-size: 1rem;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #fafafa;
+}
+
+.modal-content {
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #0f23ca !important;
 }

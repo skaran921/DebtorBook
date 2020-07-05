@@ -22,6 +22,11 @@
         return preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/",$password);
       }
 
+      //   ****************Validate indian Mobile No.********************
+    public static function validateMobile($password){
+      return preg_match("/^[6789][0-9]{9}$/",$password);
+    }
+
 
   }
 ?>
