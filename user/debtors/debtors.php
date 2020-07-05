@@ -233,7 +233,9 @@ toastr.options = {
           ?>
           <script>
                 toastr.success("Debtor Account Deleted!");
-                window.location.reload();
+                setTimeout(() => {
+                  window.location.reload();
+                }, 0);
           </script>
        <?php
      }else{

@@ -73,6 +73,19 @@ div::-webkit-scrollbar-thumb:hover {
   color: #0f23ca;
 }
 
+.bootstrap-select .dropdown-toggle {
+  display: block !important;
+  width: 100% !important;
+  padding: 12px 20px !important;
+  border: none !important;
+  border-radius: 22px !important;
+  background-color: #fff !important;
+}
+
+.form-control {
+  border-radius: 22px !important;
+}
+
 form input,
 form textarea {
   display: block;
@@ -83,10 +96,26 @@ form textarea {
 }
 form input:focus,
 form button:focus,
-form textarea:focus {
-  transition: 0.3s ease-in;
-  outline: none;
-  box-shadow: 0 0px 2px #0f23ca;
+form textarea:focus,
+.bootstrap-select .dropdown-toggle:focus,
+.bootstrap-select
+  > select.mobile-device:focus
+  + .dropdown-toggle
+  .form-control:focus {
+  transition: 0.3s ease-in !important;
+  outline: none !important;
+  box-shadow: 0 0px 2px #0f23ca !important;
+  outline-offset: 0px !important;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hove {
+  color: #111 !important;
+}
+.bootstrap-select .dropdown-toggle:focus,
+.bootstrap-select > select.mobile-device:focus + .dropdown-toggle {
+  outline: none !important;
 }
 
 form button {
@@ -323,4 +352,9 @@ table.dataTable.display tbody td {
   border: none !important;
   border-radius: 0 !important;
   outline: none !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #0f23ca !important;
 }
