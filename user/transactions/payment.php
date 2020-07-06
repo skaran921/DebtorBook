@@ -104,7 +104,7 @@
 <!-- datepicker flatpickr.min.js-->
   <script src="../../js/flatpickr.min.js"></script>
   <script>
-      $(".flatpickr").flatpickr({dateFormat: "d-m-Y"});
+      $(".flatpickr").flatpickr({dateFormat: "d-m-Y",maxDate:"today"});
   </script>
 <!-- datepicker flatpickr.min.css-->
 

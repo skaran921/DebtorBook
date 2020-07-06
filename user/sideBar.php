@@ -10,6 +10,7 @@
           $debtorUrl = "/DebtorBook/user/debtors/debtors.php";
           $paymentUri = "/DebtorBook/user/transactions/payment.php";
           $receivedUri = "/DebtorBook/user/transactions/received.php";
+          $dayBookUri = "/DebtorBook/user/reports/dayBook.php";
           // its give active-link class if current Uri is same the link uri
           function isActiveUri($linkUri,$currentUri){               
                if($linkUri === $currentUri){
@@ -23,7 +24,7 @@
        <a href="<?php echo $host.$debtorUrl;?>" class="<?php isActiveUri($debtorUrl,$currentUri);?>"> <span class="fa fa-users"></span> Debtors</a>
        <a href="<?php echo $host.$paymentUri;?>" class="<?php isActiveUri($paymentUri,$currentUri);?>"><span class="fa fa-money"></span> Payment</a>
        <a href="<?php echo $host.$receivedUri;?>" class="<?php isActiveUri($receivedUri,$currentUri);?>"> <span class="fa fa-rupee-sign"></span> Received</a>
-       <a href="#home"><span class="fa fa-book"></span> Day Book</a>
+       <a href="<?php echo $host.$dayBookUri;?>" class="<?php isActiveUri($dayBookUri,$currentUri);?>"><span class="fa fa-book"></span> Day Book</a>
        <a href="#home"><span class="fa fa-list-alt"></span> Reports</a>
        <a href="#home"> <span class="fa fa-bell"></span> Reminder</a>
        <a href="#home"><span class="fa fa-user-circle"></span> Profile</a>
