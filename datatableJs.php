@@ -16,30 +16,35 @@
             buttons: [                
                 {
                     extend: 'copy',
+                    footer: true,
                     exportOptions: {
                         columns: 'th:not(:last-child)'
                     }
-                },
+                },            
                 {
                     extend: 'print',
+                    footer: true,
                     exportOptions: {
                         columns: 'th:not(:last-child)'
                     }
                 },
                 {
                     extend: 'csv',
+                    footer: true,
                     exportOptions: {
                         columns: 'th:not(:last-child)'
                     }
                 },
                 {
                     extend: 'excel',
+                    footer: true,
                     exportOptions: {
                         columns: 'th:not(:last-child)'
                     }
                 },
                 {
                     extend: 'pdf',
+                    footer: true,
                     exportOptions: {
                         columns: 'th:not(:last-child)'
                     }

@@ -27,6 +27,11 @@
       return preg_match("/^[6789][0-9]{9}$/",$password);
     }
 
+    //   ****************Validate date(dd-mm-yyyy).********************
+    public static function validateDate($date){
+      return preg_match("/^([0-9]{2})-([0-9]{2})-([0-9]{4})$/",$date);
+    }
+
 
   }
 ?>

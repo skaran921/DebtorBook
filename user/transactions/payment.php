@@ -51,7 +51,7 @@
             <div class="main p-5">
                   <h1 class="gray-text"> <i class="fa fa-money"></i> Payment</h1>
                   <hr/>
-                  <form action="" method="post">
+                  <form action="" method="post" onsubmit="return validatePaymentForm()">
                      <div class="row">
                          <div class="col-md-12 col-lg-6 col-sm-12">
                              <!-- payment date -->
@@ -78,18 +78,18 @@
                              <!-- payment amount -->
                              <div class="form-group">
                                  <label class="gray-text">Amount in INR*</label>                                
-                                 <input type="number" name="amount" id="amount" class="mb-2" placeholder="Payment Amount"  min="0" required>                               
+                                 <input type="number" name="paymentAmount" id="paymentAmount" class="mb-2" placeholder="Payment Amount"  min="0" required>                               
                              </div>
 
                              <!-- comment,Narration,Remarks -->
                              <div class="form-group">
-                                 <label class="gray-text">Remarks*</label>                                
+                                 <label class="gray-text">Remark*</label>                                
                                  <textarea name="remark" id="remark" class="mb-2" placeholder="Short explanation of transaction" required></textarea>                               
                              </div>
 
 
                              <!--submit button -->
-                          <button type="submit" class="btn-block" name="addDebtor"><i class="fa fa-save"></i> Save</button>
+                          <button type="submit" class="btn-block" name="paymentTransaction"><i class="fa fa-save"></i> Save</button>
                          </div>
                      </div>
                   </form>
@@ -99,10 +99,12 @@
      include "../../externalJs.php";
 ?>
 
+
+
 <!-- datepicker flatpickr.min.js-->
   <script src="../../js/flatpickr.min.js"></script>
   <script>
-      $(".flatpickr").flatpickr({dateFormat: "d-m-Y"});
+      $(".flatpickr").flatpickr({dateFormat: "d-m-Y",maxDate:"today"});
   </script>
 <!-- datepicker flatpickr.min.css-->
 
@@ -137,54 +139,77 @@ toastr.options = {
 </script>
 <!-- toast -->
 
+
+<!-- js  functions-->
+<script>
+   function validatePaymentForm(){
+      let paymentDate = $("#paymentDate").val();
+      let debtorId = $("#debtorId").val();
+      let paymentAmount = $("#paymentAmount").val();
+      let remark = $("#remark").val();
+      let datePattern = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/;
+     if(!paymentDate.match(datePattern)){
+        toastr.error('Payment Date is Not Valid.',"Oops!");
+        return false;
+     }else if(debtorId=== "" || debtorId.length === 0){
+        toastr.error('Please Select Debtor.',"Oops!");
+        return false;
+     }else if(paymentAmount=== "" || paymentAmount.length === 0 || paymentAmount<=0){
+        toastr.error('Please Enter Valid Amount(More Than 0).',"Oops!");
+        return false;
+     }else if(remark=== "" || remark.length === 0){
+        toastr.error('Please Write Short Explanation of Transaction.',"Oops!");
+        return false;
+     }else{
+        return true;
+     }
+     
+   }
+</script>
+
+
 <?php 
    if(
-       isset($_POST["debtorName"]) &&
-       isset($_POST["debtorMobileNo"]) &&
-       isset($_POST["addDebtor"]) 
+       isset($_POST["paymentDate"]) &&
+       isset($_POST["debtorId"]) &&
+       isset($_POST["paymentAmount"]) &&
+       isset($_POST["remark"]) &&
+       isset($_POST["paymentTransaction"]) 
      ){
-         $debtorName = $_POST["debtorName"];
-         $debtorMobileNo = $_POST["debtorMobileNo"];
-         $debtorEmail = $_POST["debtorEmail"];
-         $debtorAddress = $_POST["debtorAddress"];
+         $paymentDate = $_POST["paymentDate"];
+         $debtorId = $_POST["debtorId"];
+         $paymentAmount = $_POST["paymentAmount"];
+         $remark = $_POST["remark"];
          include "../../api/helper/ValidationHelper.php";
         //  check name validation
-        if(!ValidationHelper::validateName($debtorName)){
+        if(!ValidationHelper::validateDate($paymentDate)){
                 // invalid name 
                 ?>
                    <script>
-                         toastr.error('Name is not valid',"Oops!");
+                         toastr.error('Payment Date is Not Valid',"Oops!");
                    </script>
                 <?php
-        }elseif(!ValidationHelper::validateMobile($debtorMobileNo)){
-            //invalid mobile
+        }elseif(empty($debtorId) || empty($paymentAmount) || empty($remark) ){
+            //empty debtorid
                 ?>
                    <script>
-                         toastr.error('Mobile no. is not valid',"Oops!");
+                         toastr.error('Please fill required fields',"Oops!");
                    </script>
                 <?php
         }else{
             // insert data
-         include "../../api/Debtors.php";
          include "../../api/db.php";
-         $debtor  = new Debtors($conn);
-         $result = $debtor->insertDebtor($debtorName,$debtorMobileNo,$debtorEmail,$debtorAddress);
-         if($result === -1){
-             //   debtor already exist
+         $transactions  = new Transactions($conn);
+         $result = $transactions->paymentTransaction($paymentDate,$debtorId,$paymentAmount,$remark);
+         if($result){
+            //   insert payment transaction successfully
             ?>
             <script>
-                  toastr.error('Debtor A/c already exist',"Oops!");
-            </script>
-         <?php
-         }elseif($result){
-            //   insert data successfully
-            ?>
-            <script>
-                  toastr.success('New Debtor Created');
+                  toastr.success('Payment Transaction Saved!');
             </script>
            <?php
          }else{
-            //   error on inserting data
+            //   error on inserting payment transaction
             ?>
             <script>
                   toastr.error('Something went wrong',"Oops!");
