@@ -36,6 +36,12 @@
         return $this->conn->query($sql);        
     }
 
+    // *inActiveTransaction
+    public function inActiveTransaction($transactionId){
+        $sql = "UPDATE transaction SET TRANSACTION_STATUS='0' WHERE TRANSACTION_ID='$transactionId'";
+        return $this->conn->query($sql);
+    }
+
 
     // *getTodayTransaction
     public function getTodayTransaction(){
@@ -48,6 +54,85 @@
         return $rows;    
     }
 
+    // *getTransactionById
+    public function getTransactionById($transactionId){       
+        $sql = "SELECT * FROM transaction WHERE TRANSACTION_ID='$transactionId'"; 
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
+
+    // *updateTransaction
+    public function updateTransaction($transactionId,$transactionDate,$debtorId,$amount,$remark,$transactionType){
+        $selectResultQuery ="SELECT COUNT(*) as totalRowCount FROM transaction WHERE TRANSACTION_ID='$transactionId'";
+        $selectResult = $this->conn->query($selectResultQuery);
+        if($row = $selectResult->fetch_assoc()){
+            if($row['totalRowCount'] == 0){
+                  return -1;
+            } 
+         }
+        $sql ="";
+        if($transactionType==="P"){
+            $sql = "UPDATE transaction SET TRANSACTION_DATE='$transactionDate',DEBTOR_ID='$debtorId',PAY_AMOUNT='$amount',TRANSACTION_REMARK='$remark' WHERE TRANSACTION_ID='$transactionId'";
+        }else{
+            $sql = "UPDATE transaction SET TRANSACTION_DATE='$transactionDate',DEBTOR_ID='$debtorId',RECEIVED_AMOUNT='$amount',TRANSACTION_REMARK='$remark' WHERE TRANSACTION_ID='$transactionId'";
+        }
+        return $this->conn->query($sql);
+    }
+
+    // *getTransactionsBeteenTwoTransactionDate
+    public function getTransactionsBeteenTwoTransactionDate($from,$to){
+        $userId = $_SESSION["user_auth_id"];
+        $sql ="SELECT * FROM `transaction` WHERE USER_ID='$userId' AND TRANSACTION_STATUS='1' AND TRANSACTION_DATE BETWEEN '$from' AND '$to'";
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
+
+
+    // *getPaidTransactionBetweenTwoTransactionDate
+    public function getPaidTransactionBetweenTwoTransactionDate($from,$to){
+        $userId = $_SESSION["user_auth_id"];
+        $sql ="SELECT * FROM `transaction` WHERE USER_ID='$userId' AND TRANSACTION_STATUS='1' AND TRANSACTION_DATE AND TRANSACTION_TYPE='P' BETWEEN '$from' AND '$to'";
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
+
+    // *getReceivedTransactionBetweenTwoTransactionDate
+    public function getReceivedTransactionBetweenTwoTransactionDate($from,$to){
+        $userId = $_SESSION["user_auth_id"];
+        $sql ="SELECT * FROM `transaction` WHERE USER_ID='$userId' AND TRANSACTION_STATUS='1' AND TRANSACTION_DATE AND TRANSACTION_TYPE='R' BETWEEN '$from' AND '$to'";
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
+
+    // *getCurrentMonthTransactions
+    public function getCurrentMonthTransactions($from,$to){
+        $userId = $_SESSION["user_auth_id"];
+        $sql ="SELECT * FROM `transaction` WHERE USER_ID='$userId' AND TRANSACTION_STATUS='1' AND TRANSACTION_DATE AND TRANSACTION_TYPE='R' BETWEEN '$from' AND '$to'";
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
+
+    // *getCurrentYearTransactions
+    public function getCurrentYearTransactions($from,$to){
+        $userId = $_SESSION["user_auth_id"];
+        $sql ="SELECT * FROM `transaction` WHERE USER_ID='$userId' AND TRANSACTION_STATUS='1' AND TRANSACTION_DATE AND TRANSACTION_TYPE='R' BETWEEN '$from' AND '$to'";
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
+
+    // SELECT * FROM `transaction` WHERE TRANSACTION_DATE BETWEEN "08-07-2020" AND "09-08-2020"
     /*
        SELECT t.TRANSACTION_ID, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,
     (SELECT SUM(t2.RECEIVED_AMOUNT) - SUM(t2.PAY_AMOUNT) FROM transaction t2 WHERE   t2.USER_ID =1 AND t2.DEBTOR_ID =2 AND  t2.TRANSACTION_ID <= t.TRANSACTION_ID) BALANCE,

@@ -11,4 +11,11 @@
                 keyboard: false
            });
         }
+
+        const openInfoModal=()=>{
+            $('#infoModal').modal({
+                backdrop: 'static',
+                keyboard: false
+           });
+        }
      </script>

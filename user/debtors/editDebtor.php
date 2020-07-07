@@ -30,7 +30,7 @@
             
             <!-- main content-->
             <div class="main p-5">                  
-                  <h1 class="gray-text"> <i class="fa fa-plus-square"></i> Create Debtor</h1>
+                  <h1 class="gray-text"> <i class="fa fa-pencil"></i> Edit Debtor</h1>
                   <hr/>
                   <?php 
                      if(!isset($_GET["debtor"])){

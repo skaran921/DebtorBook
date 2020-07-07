@@ -303,6 +303,11 @@ div.sidebarContent {
   text-transform: capitalize;
 }
 
+textarea,
+input[type="text"] {
+  text-transform: capitalize !important;
+}
+
 tbody tr td,
 thead tr th {
   text-align: left;

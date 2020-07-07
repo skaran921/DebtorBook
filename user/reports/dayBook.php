@@ -46,6 +46,11 @@
                       </small>
                   </div>
                   <hr/>
+                  <div class="text-center p-4" id="pageLoading">
+                        <div class="spinner-border blue-text fade-in" role="status" style="display:block;">
+                        <span class="sr-only">Loading...</span>
+                        </div>
+                 </div>
                   <div class="table-responsive">
                   <table class="table stripe display nowrap" id="debtorsTable">
                       <thead class="blue text-white">
@@ -60,9 +65,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <?php 
-                            //  include("../../api/db.php");
-                             
+                          <?php                            
                             $transactions = $transaction->getTodayTransaction();
                             $srNo =1;
                             $totalPay = 0.0;
@@ -85,8 +88,8 @@
                                   <a href="javascript:void(0)" class="btn rounded-circle btn-primary" 
                                     onclick="openTransactionInfoModal('<?php echo $transaction['TRANSACTION_DATE'];?>','<?php echo $transaction['DEBTOR_NAME'];?>','<?php echo $transaction['DEBTOR_MOBILE'];?>','<?php echo $transaction['DEBTOR_EMAIL'];?>','<?php echo $transaction['DEBTOR_ADDRESS'];?>','<?php echo $transaction_create_at;?>','<?php echo $transaction_update_at;?>','<?php echo  $transaction['PAY_AMOUNT'];?>','<?php echo  $transaction['RECEIVED_AMOUNT'];?>')"> <i class="fa fa-info-circle"></i> 
                                   </a>
-                                    <a href="javascript:void(0)" class="btn rounded-circle btn-secondary" onclick="window.open('./editDebtor.php?debtor=<?php echo $encryted_transaction_id;?>','_blank')"> <i class="fa fa-pencil"></i> </a>
-                                    <a href="javascript:void(0)" class="btn rounded-circle btn-danger" onclick="openDebtorDeleteModal(<?php echo $transaction['TRANSACTION_ID'];?>)"> <i class="fa fa-trash"></i> </a>                                   
+                                    <a href="javascript:void(0)" class="btn rounded-circle btn-secondary" onclick="window.open('../transactions/editTransaction.php?transaction=<?php echo $encryted_transaction_id;?>','_blank')"> <i class="fa fa-pencil"></i> </a>
+                                    <a href="javascript:void(0)" class="btn rounded-circle btn-danger" onclick="openTransactionDeleteModal(<?php echo $transaction['TRANSACTION_ID'];?>)"> <i class="fa fa-trash"></i> </a>                                   
                                 </td>
                               </tr>
                                 <?php
@@ -172,29 +175,29 @@
 </div>
 
  <!--transaction delete Modal -->
- <div class="modal fade" id="debtorDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="transactionDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title gray-text" id="exampleModalLabel ">Debtor Info</h5>
+        <h5 class="modal-title gray-text" id="exampleModalLabel ">Confirmation</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
             <div class="text-center"> <span class="fa fa-warning text-danger" style="font-size:6rem"></span></div>
-            <div class="p-4 gray-text">Do you really want to delete this debtor A/c? </div>
+            <div class="p-4 gray-text">Do you really want to delete this transaction? </div>
             <div class="text-center">
-                <div class="spinner-border blue-text fade-in" role="status" style="display:none;">
+                <div class="spinner-border blue-text fade-in" id="deleteTransactionLoading" role="status" style="display:none;">
                   <span class="sr-only">Loading...</span>
                 </div>
-             </div>
+            </div>
       </div>  
       <div class="modal-footer">
            <button type="button" class="btn light-white gray-text" data-dismiss="modal" aria-label="Close">Cancel</button>
            <form action="" method="post">
-              <input type="hidden" id="deleteDebtorId" name="deleteDebtorId" value="">
-              <button type="submit" name="deleteDebtor"><i class="fa fa-trash"></i> Delete</button>
+              <input type="hidden" id="deleteTransactionId" name="deleteTransactionId" value="">
+              <button type="submit" name="deleteTransaction"><i class="fa fa-trash"></i> Delete</button>
            </form>
       </div>     
     </div>
@@ -256,26 +259,36 @@ toastr.options = {
     }
 
     // openDebtorDeleteModal
-   function openDebtorDeleteModal(debtorId){
-           $("#deleteDebtorId").val(debtorId);
-           $('#debtorDeleteModal').modal({
+   function openTransactionDeleteModal(transactionId){
+           $("#deleteTransactionId").val(transactionId);
+           $('#transactionDeleteModal').modal({
                 backdrop: 'static',
                 keyboard: false
            })
    }
+
+//    stop page loading
+$("#pageLoading").hide();
 </script>
 
 <?php 
   // delete debtor
-  if(isset($_POST["deleteDebtor"])){
-     $debtorId = $_POST["deleteDebtorId"];
+  if(isset($_POST["deleteTransaction"])){
+    //   show loader
+     ?>
+     <script>
+          $("#deleteTransactionLoading").show();
+          $("deleteTransaction").prop("disabled",true);
+     </script>
+     <?php 
+     $transactionId = $_POST["deleteTransactionId"];
      include "../../api/db.php";
-     $debtor = new Debtors($conn);
-     if($debtor->inActiveDebtor($debtorId)){
+     $transaction = new Transactions($conn);
+     if($transaction->inActiveTransaction($transactionId)){
           // success 
           ?>
           <script>
-                toastr.success("Debtor Account Deleted!");
+                toastr.success("Transaction Deleted!");
                 setTimeout(() => {
                   window.location.reload();
                 }, 0);
