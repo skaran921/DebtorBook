@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Book - Debtor Book</title>
+    <title>Current Year Report - Debtor Book</title>
     <?php 
      include "../../externalCss.php";
      include "../../datatableCss.php";
@@ -36,10 +36,10 @@
           <!-- navbar -->
              <?php include("../navBar.php"); ?>  
           <!-- navbar end-->
-            
+        
             <!-- main content-->
             <div class="main p-2">
-                  <h1 class="gray-text"> <i class="fa fa-book"></i> Day Book</h1>
+                  <h1 class="gray-text"> <i class="fa fa-list-alt"></i> Current Year Report</h1>
                   <div>
                       <small class="gray-text">
                             <i class="fa fa-calendar"> <?php echo date("d-m-Y"); ?></i> 
@@ -66,7 +66,7 @@
                       </thead>
                       <tbody>
                           <?php                            
-                            $transactions = $transaction->getTodayTransaction();
+                            $transactions = $transaction->getCurrentYearTransactions();
                             $srNo =1;
                             $totalPay = 0.0;
                             $totalReceived = 0.0;

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Book - Debtor Book</title>
+    <title>Paid Amount Report - Debtor Book</title>
     <?php 
      include "../../externalCss.php";
      include "../../datatableCss.php";
@@ -19,8 +19,12 @@
      include "../../api/Transactions.php";
      $transaction = new Transactions($conn);     
     ?>
+
+     <!-- date picker -->
+     <link rel="stylesheet" href="../../css/flatpickr.min.css" />
       <!-- toast -->
       <link rel="stylesheet" href="../../css/toastr.min.css">
+      
       <style>
           tfoot{
               background-color:#fff;
@@ -36,40 +40,70 @@
           <!-- navbar -->
              <?php include("../navBar.php"); ?>  
           <!-- navbar end-->
-            
+        
             <!-- main content-->
             <div class="main p-2">
-                  <h1 class="gray-text"> <i class="fa fa-book"></i> Day Book</h1>
+                  <h1 class="gray-text"> <i class="fa fa-list-alt"></i> Paid Amount Report</h1>
                   <div>
                       <small class="gray-text">
                             <i class="fa fa-calendar"> <?php echo date("d-m-Y"); ?></i> 
                       </small>
                   </div>
                   <hr/>
+                
+                  <!-- form -->
+                  <form action="" method="post">
+                     <div class="row">
+                         <div class="col-md-5 col-lg-5 col-sm-12">
+                             <!-- payment start date -->
+                             <div class="form-group">
+                                <input class="flatpickr flatpickr-input mb-2" id="paymentStartDate" name="paymentStartDate" type="text" placeholder="Select Payment Start Date" data-id="datetime" readonly="readonly" autofocus required>       
+                             </div>
+                         </div>
+                         <div class="col-md-5 col-lg-5 col-sm-12">
+                               <!-- payment start date -->
+                               <div class="form-group">
+                                <input class="flatpickr flatpickr-input mb-2" id="paymentEndDate" name="paymentEndDate" type="text" placeholder="Select Payment End Date" data-id="datetime" readonly="readonly" autofocus required>       
+                             </div>
+                         </div>
+                         <div class="col-md-4 col-lg-2 col-sm-12">
+                             <!--submit button -->
+                          <button type="submit" class="btn-block" name="fetchPaymentTransaction"><i class="fa fa-search"></i> Search</button>
+                         </div>
+                     </div>
+                  </form>
+                 <!-- form end -->
                   <div class="text-center p-4" id="pageLoading">
                         <div class="spinner-border blue-text fade-in" role="status" style="display:block;">
                         <span class="sr-only">Loading...</span>
                         </div>
                  </div>
-                  <div class="table-responsive">
-                  <table class="table stripe display nowrap" id="debtorsTable">
+               <?php 
+                  if(isset($_POST["fetchPaymentTransaction"])){
+                       $startDate = $_POST["paymentStartDate"];
+                       $endDate = $_POST["paymentEndDate"];
+                    ?>
+                <div class="table-responsive">
+                  <table class="table stripe display nowrap" id="debtorsTable" style="width:100%">
                       <thead class="blue text-white">
                           <tr>
                               <th>Sr. No.</th>
                               <th>Date</th>
                               <th>Debtor Name</th>
                               <th>Remark</th>
-                              <th><i class="fa fa-rupee-sign"></i> Pay</th>
-                              <th><i class="fa fa-rupee-sign"></i> Received</th>
+                              <th><i class="fa fa-rupee-sign"></i> Pay</th>                             
                               <th>Actions</th>
                           </tr>
                       </thead>
                       <tbody>
                           <?php                            
-                            $transactions = $transaction->getTodayTransaction();
+                            $transactions = $transaction->getPaidTransactionBetweenTwoTransactionDate($startDate,$endDate);
                             $srNo =1;
                             $totalPay = 0.0;
                             $totalReceived = 0.0;
+                            if(!count($transactions)){
+                              echo "<tr><td colspan='5' class='text-center text-primary'>Sorry No Record Found!</td><td></td></tr>"; 
+                            }
                             foreach($transactions as $transaction){                                
                                 $encryted_transaction_id = base64_encode($transaction['TRANSACTION_ID']);
                                 $transaction_create_at= date("d-M-Y h:i:s A",strtotime($transaction['TRANSACTION_CREATE_DATE']));
@@ -83,7 +117,6 @@
                                 <td><?php echo $transaction['DEBTOR_NAME'];?></td>
                                 <td><?php echo $transaction['TRANSACTION_REMARK'];?></td>
                                 <td><?php echo $transaction['PAY_AMOUNT'] == 0.00 ? "<div class='ml-4'>-</div>" : $transaction['PAY_AMOUNT'];?></td>
-                                <td><?php echo $transaction['RECEIVED_AMOUNT'] == 0.00 ? "<div class='ml-4'>-</div>":$transaction['RECEIVED_AMOUNT'];?></td>
                                 <td>
                                   <a href="javascript:void(0)" class="btn rounded-circle btn-primary" 
                                     onclick="openTransactionInfoModal('<?php echo $transaction['TRANSACTION_DATE'];?>','<?php echo $transaction['DEBTOR_NAME'];?>','<?php echo $transaction['DEBTOR_MOBILE'];?>','<?php echo $transaction['DEBTOR_EMAIL'];?>','<?php echo $transaction['DEBTOR_ADDRESS'];?>','<?php echo $transaction_create_at;?>','<?php echo $transaction_update_at;?>','<?php echo  $transaction['PAY_AMOUNT'];?>','<?php echo  $transaction['RECEIVED_AMOUNT'];?>')"> <i class="fa fa-info-circle"></i> 
@@ -102,15 +135,17 @@
                               <?php $diff = $totalReceived-$totalPay; ?>
                               <th></th> 
                               <th colspan="3">Total</th>
-                              <th><?php echo  '-'.number_format((float)$totalPay, 2, '.', ''); ?></th>
-                              <th><?php echo '+'.number_format((float)$totalReceived, 2, '.', ''); ?></th>
-                              <th class="<?php echo ($diff) < 0 ? "text-danger":"" ?>">
-                                  <?php echo number_format((float)$diff, 2, '.', '');?>
-                              </th>
+                              <th><?php echo  number_format((float)$totalPay, 2, '.', ''); ?></th>
+                              <th></th>                             
                           </tr>
                        </tfoot>
                   </table>
-                  </div>
+                </div>
+                    <?php 
+                  }else{
+                    echo "<p class='text-warning'>*Please Seelct Start and End Date.</p>";
+                  }
+               ?>
             </div> <!---main -------->
     </div><!-- Page content end-->
 
@@ -207,6 +242,13 @@
      include "../../externalJs.php";
      include "../../datatableJs.php";
 ?>
+
+<!-- datepicker flatpickr.min.js-->
+<script src="../../js/flatpickr.min.js"></script>
+<script>
+      $(".flatpickr").flatpickr({dateFormat: "d-m-Y",maxDate:"today"});
+</script>
+<!-- datepicker flatpickr.min.css-->
 
 <!-- toaster -->
 <script src="../../js/toastr.min.js"></script>
