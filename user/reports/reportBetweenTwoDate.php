@@ -138,7 +138,7 @@
                               <th></th> 
                               <th colspan="3">Total</th>
                               <th><?php echo  '-'.number_format((float)$totalPay, 2, '.', ''); ?></th>
-                              <th><?php echo  '-'.number_format((float)$totalReceived, 2, '.', ''); ?></th>
+                              <th><?php echo  '+'.number_format((float)$totalReceived, 2, '.', ''); ?></th>
                               <th></th>                             
                           </tr>
                        </tfoot>

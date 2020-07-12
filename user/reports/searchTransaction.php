@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report For A Period- Debtor Book</title>
+    <title>Search Transaction- Debtor Book</title>
     <?php 
      include "../../externalCss.php";
      include "../../datatableCss.php";
@@ -22,6 +22,10 @@
 
      <!-- date picker -->
      <link rel="stylesheet" href="../../css/flatpickr.min.css" />
+
+      <!-- select box -->
+      <link rel="stylesheet" href="../../css/bootstrap-select.min.css" />
+
       <!-- toast -->
       <link rel="stylesheet" href="../../css/toastr.min.css">
       
@@ -30,6 +34,14 @@
               background-color:#fff;
               box-shadow: 0px 1px 4px #d0d0d0;
           }
+
+      .bootstrap-select .dropdown-toggle:focus,
+      .bootstrap-select>select.mobile-device:focus+.dropdown-toggle{
+         transition: 0.3s ease-in !important;
+         outline: none !important;
+         box-shadow: 0 0px 2px #0f23ca !important;
+         outline-offset: 0px !important;
+      }
       </style>
 </head>
 <body>
@@ -43,7 +55,7 @@
         
             <!-- main content-->
             <div class="main p-2">
-                  <h1 class="gray-text"> <i class="fa fa-list-alt"></i> Report Between a Selected Period</h1>
+                  <h1 class="gray-text"> <i class="fa fa-search"></i> Search</h1>
                   <div>
                       <small class="gray-text">
                             <i class="fa fa-calendar"> <?php echo date("d-m-Y"); ?></i> 
@@ -52,23 +64,30 @@
                   <hr/>
                 
                   <!-- form -->
-                  <form action="" method="post">
-                     <div class="row">
-                         <div class="col-md-5 col-lg-5 col-sm-12">
-                             <!-- payment start date -->
+                  <form action="" method="post" onsubmit="return validatePaymentForm()">
+                     <div class="row m-2">
+                         <div class="col-md-12 col-lg-6 col-sm-12">                         
+
+                             <!-- search BY -->
                              <div class="form-group">
-                                <input class="flatpickr flatpickr-input mb-2" id="paymentStartDate" name="paymentStartDate" type="text" placeholder="Select Payment Start Date" data-id="datetime" readonly="readonly" autofocus required>       
+                                 <label class="gray-text">Search By*</label>                                
+                                <select id="searchBy" name="searchBy" class="show-tick debtorPicker mb-2 form-control"  required data-live-search="true">
+                                 <option value="">Select Search By Option</option>                                   
+                                 <option value="TRANSACTION_DATE">Transaction Date</option>                                   
+                                 <option value="PAY_AMOUNT">Pay Amount</option>                                   
+                                 <option value="RECEIVED_AMOUNT">Received Amount</option>                                   
+                                 <option value="TRANSACTION_REMARK">Remark</option>                           
+                                 <option value="DEBTOR_ID">Debtor</option>                           
+                                </select>                                
                              </div>
-                         </div>
-                         <div class="col-md-5 col-lg-5 col-sm-12">
-                               <!-- payment start date -->
-                               <div class="form-group">
-                                <input class="flatpickr flatpickr-input mb-2" id="paymentEndDate" name="paymentEndDate" type="text" placeholder="Select Payment End Date" data-id="datetime" readonly="readonly" autofocus required>       
+
+                             <!-- payment amount -->
+                             <div class="form-group">
+                                 <label class="gray-text">Search Value*</label>                                
+                                 <input type="text" name="searchValue" id="searchValue" class="mb-2" placeholder="Search Value"  min="0" required>                               
                              </div>
-                         </div>
-                         <div class="col-md-4 col-lg-2 col-sm-12">
                              <!--submit button -->
-                          <button type="submit" class="btn-block" name="fetchPaymentTransaction"><i class="fa fa-search"></i> Search</button>
+                          <button type="submit" class="btn-block" name="searchTransaction"><i class="fa fa-search"></i> Search</button>
                          </div>
                      </div>
                   </form>
@@ -79,9 +98,9 @@
                         </div>
                  </div>
                <?php 
-                  if(isset($_POST["fetchPaymentTransaction"])){
-                       $startDate = $_POST["paymentStartDate"];
-                       $endDate = $_POST["paymentEndDate"];
+                  if(isset($_POST["searchTransaction"])){
+                       $searchBy = $_POST["searchBy"];
+                       $searchValue = $_POST["searchValue"];
                     ?>
                 <div class="table-responsive">
                   <table class="table stripe display nowrap" id="debtorsTable" style="width:100%">
@@ -98,7 +117,7 @@
                       </thead>
                       <tbody>
                           <?php                            
-                            $transactions = $transaction->getTransactionsBeteenTwoTransactionDate($startDate,$endDate);
+                            $transactions = $transaction->searchTransaction($searchBy,$searchValue);
                             $srNo =1;
                             $totalPay = 0.0;
                             $totalReceived = 0.0;
@@ -138,15 +157,13 @@
                               <th></th> 
                               <th colspan="3">Total</th>
                               <th><?php echo  '-'.number_format((float)$totalPay, 2, '.', ''); ?></th>
-                              <th><?php echo  '-'.number_format((float)$totalReceived, 2, '.', ''); ?></th>
+                              <th><?php echo  '+'.number_format((float)$totalReceived, 2, '.', ''); ?></th>
                               <th></th>                             
                           </tr>
                        </tfoot>
                   </table>
                 </div>
                     <?php 
-                  }else{
-                    echo "<p class='text-warning'>*Please Seelct Start and End Date.</p>";
                   }
                ?>
             </div> <!---main -------->
@@ -252,6 +269,14 @@
       $(".flatpickr").flatpickr({dateFormat: "d-m-Y",maxDate:"today"});
 </script>
 <!-- datepicker flatpickr.min.css-->
+
+
+ <!-- select box bootstrap-select.min.js-->
+ <script src="../../js/bootstrap-select.min.js"></script>
+  <script>
+   $('.debtorPicker').selectpicker();
+  </script>
+ <!-- select box bootstrap-select.min.js-->
 
 <!-- toaster -->
 <script src="../../js/toastr.min.js"></script>
