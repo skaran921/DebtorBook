@@ -212,7 +212,7 @@ div.sidebarContent {
   flex-direction: row;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   border: 1px solid #fefefe;
   transition: 0.5s ease-in;
 }
@@ -244,6 +244,7 @@ div.sidebarContent {
 .vr {
   width: 1px;
   height: 60px;
+  display: none;
   background-color: #ddd;
 }
 

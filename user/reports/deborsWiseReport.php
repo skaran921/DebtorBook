@@ -17,7 +17,6 @@
      $user = new User($conn);
      $userNameArr =$user->getUserNameArray($userId);
      include("../../api/Debtors.php");
-     $debtor = new Debtors($conn);
     ?>
 </head>
 <body>
@@ -47,8 +46,8 @@
                       </thead>
                       <tbody>
                           <?php 
-                            //  include("../../api/db.php");
-                             
+                            include "../../api/db.php";
+                            $debtor = new Debtors($conn);
                             $debtors = $debtor->getActiveDebtors();
                             $srNo =1;
                             foreach($debtors as $debtor){                                

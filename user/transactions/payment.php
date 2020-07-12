@@ -15,8 +15,7 @@
      $userId = $_SESSION["user_auth_id"];
      $user = new User($conn);
      $userNameArr =$user->getUserNameArray($userId);
-     include "../../api/Transactions.php";
-     $transaction = new Transactions($conn);     
+     include "../../api/Transactions.php";   
     ?>
      <!-- date picker -->
      <link rel="stylesheet" href="../../css/flatpickr.min.css" />
@@ -66,6 +65,8 @@
                                 <select id="debtorId" name="debtorId" class="show-tick debtorPicker mb-2 form-control"  required data-live-search="true">
                                  <option value="">Select Debtor</option>                                   
                                    <?php 
+                                        include "../../api/db.php";
+                                        $transaction = new Transactions($conn);  
                                        foreach($transaction->getActiveDebtorsForSelectBox() as $transaction){
                                           ?>
                                            <option value="<?php echo $transaction['DEBTOR_ID'];?>" data-icon="fa fa-user-circle gray-text"><?php echo $transaction['DEBTOR_NAME'];?></option>

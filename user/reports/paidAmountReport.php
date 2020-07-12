@@ -17,7 +17,6 @@
      $user = new User($conn);
      $userNameArr =$user->getUserNameArray($userId);
      include "../../api/Transactions.php";
-     $transaction = new Transactions($conn);     
     ?>
 
      <!-- date picker -->
@@ -96,7 +95,9 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <?php                            
+                          <?php 
+                            include "../../api/db.php";
+                            $transaction = new Transactions($conn);                               
                             $transactions = $transaction->getPaidTransactionBetweenTwoTransactionDate($startDate,$endDate);
                             $srNo =1;
                             $totalPay = 0.0;

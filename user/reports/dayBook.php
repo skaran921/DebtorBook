@@ -17,7 +17,6 @@
      $user = new User($conn);
      $userNameArr =$user->getUserNameArray($userId);
      include "../../api/Transactions.php";
-     $transaction = new Transactions($conn);     
     ?>
       <!-- toast -->
       <link rel="stylesheet" href="../../css/toastr.min.css">
@@ -65,7 +64,9 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <?php                            
+                          <?php    
+                             include "../../api/db.php";
+                            $transaction = new Transactions($conn);                          
                             $transactions = $transaction->getTodayTransaction();
                             $srNo =1;
                             $totalPay = 0.0;
