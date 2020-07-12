@@ -65,7 +65,9 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <?php                            
+                          <?php 
+                             include "../../api/db.php";
+                             $transaction = new Transactions($conn);                             
                             $transactions = $transaction->getCurrentMonthTransactions();
                             $srNo =1;
                             $totalPay = 0.0;

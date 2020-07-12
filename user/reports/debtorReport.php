@@ -17,7 +17,6 @@
      $user = new User($conn);
      $userNameArr =$user->getUserNameArray($userId);
      include "../../api/Debtors.php";
-     $debtors = new Debtors($conn);   
     ?>
       <style>
           tfoot{
@@ -50,6 +49,8 @@
                  <?php 
                      if(isset($_GET["debtor"])){
                         $debtorId =base64_decode($_GET["debtor"]);
+                        include "../../api/db.php";
+                        $debtors = new Debtors($conn);            
                         $debtor = $debtors->getDebtorById($debtorId);
                         if(!count($debtorId)){
                             echo "<span class='text-danger'>Sorry No Record Found</span>";

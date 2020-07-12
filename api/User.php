@@ -41,5 +41,30 @@
       $result = $this->conn->query($sql);
       return $result->fetch_assoc();
     }
+
+    // **[getTodaysReminderCount] getTodaysReminderCount of current user
+    public function getTodaysReminder(){
+      $userId = $_SESSION["user_auth_id"];
+      $date = date("d-m");
+      $sql="SELECT * FROM reminders WHERE USER_ID='$userId' AND REMINDER_STATUS='1'
+       AND DATE_FORMAT(str_to_date(REMINDER_DATE, '%d-%m-%Y'),'%d-%m') = '$date';
+       ORDER BY 	REMINDER_ID DESC";
+      $result = $this->conn->query($sql);
+      $rows = $result->fetch_all(MYSQLI_ASSOC);
+      $this->conn -> close();
+      return $rows;
+    }
+
+    // **[getTodaysReminderCount] getTodaysReminderCount of current user
+    public function getTodaysReminderCount(){
+      $userId = $_SESSION["user_auth_id"];
+      $date = date("d-m");
+      $sql="SELECT count(*) as total FROM reminders WHERE USER_ID='$userId' AND REMINDER_STATUS='1'
+       AND DATE_FORMAT(str_to_date(REMINDER_DATE, '%d-%m-%Y'),'%d-%m') = '$date' ORDER BY REMINDER_ID DESC";
+      $result = $this->conn->query($sql);
+      $rows = $result->fetch_all(MYSQLI_ASSOC);
+      $this->conn -> close();
+      return $rows[0]["total"];
+    }
   }
 ?>

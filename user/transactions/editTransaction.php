@@ -16,7 +16,6 @@
      $user = new User($conn);
      $userNameArr =$user->getUserNameArray($userId);
      include "../../api/Transactions.php";
-     $transaction = new Transactions($conn);     
     ?>
      <!-- date picker -->
      <link rel="stylesheet" href="../../css/flatpickr.min.css" />
@@ -55,6 +54,8 @@
 
                   <?php
                     if(isset($_GET["transaction"])){  
+                            include "../../api/db.php";
+                            $transaction = new Transactions($conn);  
                             $transactionId = base64_decode($_GET["transaction"]);
                             $transactionResult = $transaction->getTransactionById($transactionId);
                             include "../../api/db.php";

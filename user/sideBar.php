@@ -64,7 +64,6 @@
        </div>      
        <a class="<?php isActiveUri($remindersUri,$currentUri);?>" href="<?php echo $host.$remindersUri;?>"> <span class="fa fa-bell"></span> Reminders</a>
        <a href="#home"><span class="fa fa-user-circle"></span> Profile</a>
-       <a href="#home"> <span class="fa fa-cog"></span> Settings</a>
        <a href="javascript:void(0)" onclick="openInfoModal()"><span class="fa fa-info-circle"></span> About</a>
        <a href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-sign-out"></span> Logout</a>
        <a href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-trash"></span> Trash</a>

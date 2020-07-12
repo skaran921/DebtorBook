@@ -16,8 +16,7 @@
      $userId = $_SESSION["user_auth_id"];
      $user = new User($conn);
      $userNameArr =$user->getUserNameArray($userId);
-     include "../../api/Transactions.php";
-     $transaction = new Transactions($conn);     
+     include "../../api/Transactions.php";   
     ?>
 
      <!-- date picker -->
@@ -116,7 +115,9 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <?php                            
+                          <?php 
+                            include "../../api/db.php";
+                            $transaction = new Transactions($conn);                                    
                             $transactions = $transaction->searchTransaction($searchBy,$searchValue);
                             $srNo =1;
                             $totalPay = 0.0;

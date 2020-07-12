@@ -59,7 +59,12 @@ class Debtors{
     // **inActive debtor in db
     public function inActiveDebtor($debtorId){
         $sql="UPDATE debtors SET DEBTOR_STATUS='0' WHERE DEBTOR_ID='$debtorId'";
-        return $this->conn->query($sql);        
+        if($this->conn->query($sql)){
+            $sql="UPDATE transaction SET TRANSACTION_STATUS='0' WHERE DEBTOR_ID='$debtorId'";
+            return $this->conn->query($sql);
+        }else{
+            return false;
+        }         
     }
 
     // **Active debtor in db
