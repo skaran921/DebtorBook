@@ -20,6 +20,7 @@
           $debtorWiseReportUri = "/DebtorBook/user/reports/deborsWiseReport.php";
           $debtorReportUri = "/DebtorBook/user/reports/debtorReport.php";
           $remindersUri = "/DebtorBook/user/reminders/reminders.php";
+          $profileUri = "/DebtorBook/user/profile/index.php";
           // its give active-link class if current Uri is same the link uri
           function isActiveUri($linkUri,$currentUri){               
                if($linkUri === $currentUri){
@@ -63,7 +64,7 @@
           </div>
        </div>      
        <a class="<?php isActiveUri($remindersUri,$currentUri);?>" href="<?php echo $host.$remindersUri;?>"> <span class="fa fa-bell"></span> Reminders</a>
-       <a href="#home"><span class="fa fa-user-circle"></span> Profile</a>
+       <a class="<?php isActiveUri($profileUri,$currentUri);?>" href="<?php echo $host.$profileUri;?>"><span class="fa fa-user-circle"></span> Profile</a>
        <a href="javascript:void(0)" onclick="openInfoModal()"><span class="fa fa-info-circle"></span> About</a>
        <a href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-sign-out"></span> Logout</a>
        <a href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-trash"></span> Trash</a>
@@ -112,7 +113,7 @@
       <div class="modal-body">
             <div class="text-center"> <span class="fa fa-info-circle blue-text" style="font-size:6rem"></span></div>
             <div class="mb-1 gray-text">Designed and developed by Karan Soni</div>           
-            <div class="mb-1 gray-text">&copy; 2020 V1.0.0</div>           
+            <div class="mb-1 gray-text">July 2020 V1.0.0</div>           
       </div>  
       <div class="modal-footer">
            <button type="button" class="btn light-white text-white blue" data-dismiss="modal" aria-label="Close">Close</button>       

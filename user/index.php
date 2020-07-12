@@ -30,7 +30,7 @@
                    <div class="row dashboard-card-row"> <!--main row -->
 
                    <!-- first card user info -->
-                       <div class="col-md-4 col-lg-3 mt-2">
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
                              <div class="dashboard-card">
                                         <!-- icon -->
                                     <div class="dashboard-card-icon">
@@ -58,7 +58,7 @@
                             <!-- first card user info -->   
                             
                          <!-- 2nd card selected month info -->
-                       <div class="col-md-4 col-lg-3 mt-2">
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
                              <div class="dashboard-card">
                                         <!-- icon -->
                                     <div class="dashboard-card-icon">
@@ -78,7 +78,7 @@
                              </div>
                         </div><!-- 2nd card selected month info end-->
                     <!-- 3rd card time info -->
-                    <div class="col-md-4 col-lg-3 mt-2">
+                    <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
                              <div class="dashboard-card">
                                         <!-- icon -->
                                     <div class="dashboard-card-icon">
@@ -99,7 +99,7 @@
                         </div><!-- 3rd card time info end-->
 
                          <!-- 4th selected month info -->
-                    <div class="col-md-4 col-lg-3 mt-2">
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
                              <div class="dashboard-card">
                                         <!-- icon -->
                                     <div class="dashboard-card-icon">
@@ -110,14 +110,165 @@
                                     <!-- text -row -->
                                     <div class="dashboard-card-text-row row">
                                         <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
-                                          Selected Year
-                                            <center><div style="font-size:0.9rem"> 2020 </div></center>                                       
+                                          Current Month
+                                            <center><div style="font-size:0.9rem"><?php echo date("F");?></div></center>                                       
                                         </div>
                                         
                                     </div>
                                     <!-- text -row -->
                              </div>
                         </div><!--  4th selected month info end-->
+
+
+                          <!-- 5th total debtors -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-users gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Debtors
+                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- 5th total debtors -->
+
+                       <!-- 6th total transactions -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-list-alt gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Transactions
+                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- 6th total transactions --> 
+
+
+                        <!-- 7th total transactions -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-bell gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Reminder
+                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- 6th total transactions --> 
+
+
+                        <!-- 8th about -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-info-circle gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          About
+                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- 8th about --> 
+
+
+                         <!-- 10th about -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-question-circle gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Help
+                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- help --> 
+
+
+                        
+                         <!-- paid amount -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-money gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Paid Amount
+                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- paid amount--> 
+
+
+                        
+                         <!-- receioved amount -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-rupee-sign gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Received Amount
+                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- paid amount--> 
+
+
                     </div><!--main row -->
             </div><!--main--->
         </div>

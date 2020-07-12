@@ -3,7 +3,7 @@
                         <span class="blue-text">Debtor Book</span>
                     </a>
                 <ul class="navbar-nav" style="margin-left:auto">
-                    <li class="nav-item mr-3 mt-2" style="font-size:20px;">
+                    <li class="nav-item mr-3 mt-2" style="font-size:20px;cursor:pointer;">
                             <span class="fa fa-bell" onclick="window.open('http://localhost/DebtorBook/user/reminders/todaysReminder.php','_self')"></span><sup> <span class="badge badge-danger">
                             <?php
                                echo $user->getTodaysReminderCount();
