@@ -83,8 +83,16 @@
 
     // *getTransactionsBeteenTwoTransactionDate
     public function getTransactionsBeteenTwoTransactionDate($from,$to){
+        $fromMonth  = date("m",strtotime($from));
+        $toMonth  = date("m",strtotime($to));
+        $fromYear = date("Y",strtotime($from));
+        $toYear = date("Y",strtotime($to));
         $userId = $_SESSION["user_auth_id"];
-        $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND t.TRANSACTION_DATE BETWEEN '$from' AND '$to' AND t.TRANSACTION_STATUS='1' ORDER BY TRANSACTION_ID DESC";
+        $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId 
+        AND t.TRANSACTION_DATE BETWEEN '$from' AND '$to' 
+        AND DATE_FORMAT(str_to_date(t.TRANSACTION_DATE, '%d-%m-%Y'),'%m') between $fromMonth and $toMonth
+        AND DATE_FORMAT(str_to_date(t.TRANSACTION_DATE, '%d-%m-%Y'),'%Y') between $fromYear and $toYear
+        AND t.TRANSACTION_STATUS='1' ORDER BY TRANSACTION_ID DESC";
         $result = $this->conn->query($sql);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         $this->conn -> close();
@@ -94,8 +102,16 @@
 
     // *getPaidTransactionBetweenTwoTransactionDate
     public function getPaidTransactionBetweenTwoTransactionDate($from,$to){
+        $fromMonth  = date("m",strtotime($from));
+        $toMonth  = date("m",strtotime($to));
+        $fromYear = date("Y",strtotime($from));
+        $toYear = date("Y",strtotime($to));
         $userId = $_SESSION["user_auth_id"];
-        $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND t.TRANSACTION_DATE BETWEEN '$from' AND '$to' AND t.TRANSACTION_STATUS='1' AND TRANSACTION_TYPE='P' ORDER BY TRANSACTION_ID DESC";
+        $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId 
+        AND t.TRANSACTION_DATE BETWEEN '$from' AND '$to' 
+        AND DATE_FORMAT(str_to_date(t.TRANSACTION_DATE, '%d-%m-%Y'),'%m') between $fromMonth and $toMonth
+        AND DATE_FORMAT(str_to_date(t.TRANSACTION_DATE, '%d-%m-%Y'),'%Y') between $fromYear and $toYear
+        AND t.TRANSACTION_STATUS='1' AND TRANSACTION_TYPE='P' ORDER BY TRANSACTION_ID DESC";
         $result = $this->conn->query($sql);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         $this->conn -> close();
@@ -104,16 +120,25 @@
 
     // *getReceivedTransactionBetweenTwoTransactionDate
     public function getReceivedTransactionBetweenTwoTransactionDate($from,$to){
+        $fromMonth  = date("m",strtotime($from));
+        $toMonth  = date("m",strtotime($to));
+        $fromYear = date("Y",strtotime($from));
+        $toYear = date("Y",strtotime($to));
         $userId = $_SESSION["user_auth_id"];
-        $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND t.TRANSACTION_DATE BETWEEN '$from' AND '$to' AND t.TRANSACTION_STATUS='1' AND TRANSACTION_TYPE='R' ORDER BY TRANSACTION_ID DESC";
+        $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId
+         AND t.TRANSACTION_DATE BETWEEN '$from' AND '$to' 
+         AND DATE_FORMAT(str_to_date(t.TRANSACTION_DATE, '%d-%m-%Y'),'%m') between $fromMonth and $toMonth
+         AND DATE_FORMAT(str_to_date(t.TRANSACTION_DATE, '%d-%m-%Y'),'%Y') between $fromYear and $toYear
+         AND t.TRANSACTION_STATUS='1' AND TRANSACTION_TYPE='R' ORDER BY TRANSACTION_ID DESC";
         $result = $this->conn->query($sql);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         $this->conn -> close();
         return $rows;    
     }
-
+    
     // *getCurrentMonthTransactions
     public function getCurrentMonthTransactions(){
+        // *getCurrentMonthTransactions
         $userId = $_SESSION["user_auth_id"];
         $month = date("m");
         $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND  DATE_FORMAT(str_to_date(t.TRANSACTION_DATE, '%d-%m-%Y'),'%m') ='$month' AND t.TRANSACTION_STATUS='1' ORDER BY TRANSACTION_DATE ASC";
@@ -134,8 +159,41 @@
         return $rows;    
     }
 
-    // SELECT * FROM `transaction` WHERE TRANSACTION_DATE BETWEEN "08-07-2020" AND "09-08-2020"
+    // *searchTransaction
+    public function searchTransaction($searchBy,$searchValue){
+        $userId = $_SESSION["user_auth_id"];
+        $sql = "";
+        if($searchBy === "DEBTOR_ID"){
+            $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND debtors.DEBTOR_NAME = '$searchValue' AND t.TRANSACTION_STATUS='1' ORDER BY TRANSACTION_DATE ASC";
+        }else{
+            $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND $searchBy = '$searchValue' AND t.TRANSACTION_STATUS='1' ORDER BY TRANSACTION_DATE ASC";
+        }      
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
 
+
+     // *searchTransaction
+     public function getTransactionByDebtor($debtorId){
+        $userId = $_SESSION["user_auth_id"];       
+        $sql ="SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE,
+        (SELECT SUM(t2.RECEIVED_AMOUNT) - SUM(t2.PAY_AMOUNT) FROM transaction t2
+         WHERE t2.USER_ID ='$userId' AND t2.DEBTOR_ID ='$debtorId' AND t2.TRANSACTION_STATUS='1' AND t2.TRANSACTION_ID <= t.TRANSACTION_ID) BALANCE,
+        debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS
+         FROM transaction t 
+         LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID
+         where t.USER_ID ='$userId' AND t.TRANSACTION_STATUS='1' AND t.DEBTOR_ID = '$debtorId'
+         ORDER BY TRANSACTION_DATE ASC";         
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
+
+
+    // SELECT * FROM `transaction` WHERE TRANSACTION_DATE BETWEEN "08-07-2020" AND "09-08-2020"
     // SELECT * FROM `transaction` where DATE_FORMAT(str_to_date(TRANSACTION_DATE, '%d-%m-%Y'),"%m") ='08'
     // SELECT * FROM `transaction` where DATE_FORMAT(str_to_date(TRANSACTION_DATE, '%d-%m-%Y'),"%Y") ='2020'
 

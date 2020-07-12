@@ -16,6 +16,10 @@
           $paidAmountReportUri = "/DebtorBook/user/reports/paidAmountReport.php";
           $receivedAmountReportUri = "/DebtorBook/user/reports/receivedAmountReport.php";
           $reportBetweenTwoDateUri ="/DebtorBook/user/reports/reportBetweenTwoDate.php";
+          $searchTransactionUri = "/DebtorBook/user/reports/searchTransaction.php";
+          $debtorWiseReportUri = "/DebtorBook/user/reports/deborsWiseReport.php";
+          $debtorReportUri = "/DebtorBook/user/reports/debtorReport.php";
+          $remindersUri = "/DebtorBook/user/reminders/reminders.php";
           // its give active-link class if current Uri is same the link uri
           function isActiveUri($linkUri,$currentUri){               
                if($linkUri === $currentUri){
@@ -40,7 +44,9 @@
        <a href="<?php echo $host.$dayBookUri;?>" class="<?php isActiveUri($dayBookUri,$currentUri);?>"><span class="fa fa-book"></span> Day Book</a>
        <div class="dropright">
             <a   class="dropdown-toggle <?php isActiveReportsUri($currentUri=== $currentMonthReportUri || $currentUri === $currentYearReportUri || $currentUri === $paidAmountReportUri || $currentUri === $receivedAmountReportUri
-              || $currentUri === $reportBetweenTwoDateUri);?>" 
+              || $currentUri === $reportBetweenTwoDateUri  || $currentUri === $searchTransactionUri || $currentUri === $debtorWiseReportUri
+               || $currentUri === $debtorReportUri
+              );?>" 
                   href="javascript:void(0)" type="button" 
                   id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="fa fa-list-alt"></span>
@@ -52,10 +58,11 @@
             <a class="dropdown-item <?php isActiveUri($paidAmountReportUri,$currentUri);?>" href="<?php echo $host.$paidAmountReportUri;?>">Paid Amount</a>
             <a class="dropdown-item <?php isActiveUri($receivedAmountReportUri,$currentUri);?>" href="<?php echo $host.$receivedAmountReportUri;?>">Received Amount</a>
             <a class="dropdown-item <?php isActiveUri($reportBetweenTwoDateUri,$currentUri);?>" href="<?php echo $host.$reportBetweenTwoDateUri;?>">Between a Period</a>
-            <a href="#home"> <span class="fa fa-search"></span> Search</a>
+            <a class="dropdown-item <?php isActiveUri($searchTransactionUri,$currentUri);?>" href="<?php echo $host.$searchTransactionUri;?>"> <span class="fa fa-search"></span> Search</a>
+            <a class="dropdown-item <?php isActiveUri($debtorWiseReportUri,$currentUri);?>" href="<?php echo $host.$debtorWiseReportUri;?>"> <span class="fa fa-users"></span> Debtors Report</a>
           </div>
        </div>      
-       <a href="#home"> <span class="fa fa-bell"></span> Reminder</a>
+       <a class="<?php isActiveUri($remindersUri,$currentUri);?>" href="<?php echo $host.$remindersUri;?>"> <span class="fa fa-bell"></span> Reminders</a>
        <a href="#home"><span class="fa fa-user-circle"></span> Profile</a>
        <a href="#home"> <span class="fa fa-cog"></span> Settings</a>
        <a href="javascript:void(0)" onclick="openInfoModal()"><span class="fa fa-info-circle"></span> About</a>

@@ -53,7 +53,7 @@
                 
                   <!-- form -->
                   <form action="" method="post">
-                     <div class="row">
+                     <div class="row m-2">
                          <div class="col-md-5 col-lg-5 col-sm-12">
                              <!-- payment start date -->
                              <div class="form-group">
