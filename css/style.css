@@ -212,9 +212,18 @@ div.sidebarContent {
   flex-direction: row;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   border: 1px solid #fefefe;
   transition: 0.5s ease-in;
+}
+
+.col-md-12.col-sm-12.col-lg-12.dashboard-card-heading.gray-text {
+  text-align: center;
+}
+
+.dashboard-card-icon {
+  width: 1.6em;
+  border-right: 1px solid #f0f0f0;
 }
 
 .dashboard-card:hover {

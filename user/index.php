@@ -11,8 +11,9 @@
      include "../externalCss.php";     
      include "../api/db.php";
      include "../api/User.php";
+     include "../api/Dashboard.php";
      $userId = $_SESSION["user_auth_id"];
-     $user = new User($conn);
+     $user = new User($conn);     
      $userNameArr =$user->getUserNameArray($userId);
     ?>
 </head>
@@ -118,115 +119,10 @@
                                     <!-- text -row -->
                              </div>
                         </div><!--  4th selected month info end-->
-
-
-                          <!-- 5th total debtors -->
-                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
-                             <div class="dashboard-card">
-                                        <!-- icon -->
-                                    <div class="dashboard-card-icon">
-                                        <span class="fa fa-users gray-text"></span>
-                                    </div><!-- icon -->
-
-                                    <div class="vr"></div>
-                                    <!-- text -row -->
-                                    <div class="dashboard-card-text-row row">
-                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
-                                          Debtors
-                                            <center><div style="font-size:0.9rem">0</div></center>                                       
-                                        </div>
-                                        
-                                    </div>
-                                    <!-- text -row -->
-                             </div>
-                        </div><!-- 5th total debtors -->
-
-                       <!-- 6th total transactions -->
-                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
-                             <div class="dashboard-card">
-                                        <!-- icon -->
-                                    <div class="dashboard-card-icon">
-                                        <span class="fa fa-list-alt gray-text"></span>
-                                    </div><!-- icon -->
-
-                                    <div class="vr"></div>
-                                    <!-- text -row -->
-                                    <div class="dashboard-card-text-row row">
-                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
-                                          Transactions
-                                            <center><div style="font-size:0.9rem">0</div></center>                                       
-                                        </div>                                        
-                                    </div>
-                                    <!-- text -row -->
-                             </div>
-                        </div><!-- 6th total transactions --> 
-
-
-                        <!-- 7th total transactions -->
-                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
-                             <div class="dashboard-card">
-                                        <!-- icon -->
-                                    <div class="dashboard-card-icon">
-                                        <span class="fa fa-bell gray-text"></span>
-                                    </div><!-- icon -->
-
-                                    <div class="vr"></div>
-                                    <!-- text -row -->
-                                    <div class="dashboard-card-text-row row">
-                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
-                                          Reminder
-                                            <center><div style="font-size:0.9rem">0</div></center>                                       
-                                        </div>                                        
-                                    </div>
-                                    <!-- text -row -->
-                             </div>
-                        </div><!-- 6th total transactions --> 
-
-
-                        <!-- 8th about -->
-                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
-                             <div class="dashboard-card">
-                                        <!-- icon -->
-                                    <div class="dashboard-card-icon">
-                                        <span class="fa fa-info-circle gray-text"></span>
-                                    </div><!-- icon -->
-
-                                    <div class="vr"></div>
-                                    <!-- text -row -->
-                                    <div class="dashboard-card-text-row row">
-                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
-                                          About
-                                            <center><div style="font-size:0.9rem">0</div></center>                                       
-                                        </div>                                        
-                                    </div>
-                                    <!-- text -row -->
-                             </div>
-                        </div><!-- 8th about --> 
-
-
-                         <!-- 10th about -->
-                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
-                             <div class="dashboard-card">
-                                        <!-- icon -->
-                                    <div class="dashboard-card-icon">
-                                        <span class="fa fa-question-circle gray-text"></span>
-                                    </div><!-- icon -->
-
-                                    <div class="vr"></div>
-                                    <!-- text -row -->
-                                    <div class="dashboard-card-text-row row">
-                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
-                                          Help
-                                            <center><div style="font-size:0.9rem">0</div></center>                                       
-                                        </div>                                        
-                                    </div>
-                                    <!-- text -row -->
-                             </div>
-                        </div><!-- help --> 
-
-
+  
+                
                         
-                         <!-- paid amount -->
+                         <!--today's paid amount -->
                        <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
                              <div class="dashboard-card">
                                         <!-- icon -->
@@ -239,16 +135,18 @@
                                     <div class="dashboard-card-text-row row">
                                         <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
                                           Paid Amount
-                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                            <center><div style="font-size:0.9rem"><?php
+                                              include "../api/db.php"; 
+                                              $dashboard = new Dashboard($conn);
+                                              echo $dashboard->getSumOfTodaysPaidAmount() ?? 0.00;
+                                            ?></div></center>                                       
                                         </div>                                        
                                     </div>
                                     <!-- text -row -->
                              </div>
-                        </div><!-- paid amount--> 
-
-
+                        </div><!--today's paid amount--> 
                         
-                         <!-- receioved amount -->
+                         <!--today's receioved amount -->
                        <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
                              <div class="dashboard-card">
                                         <!-- icon -->
@@ -261,12 +159,319 @@
                                     <div class="dashboard-card-text-row row">
                                         <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
                                           Received Amount
-                                            <center><div style="font-size:0.9rem">0</div></center>                                       
+                                            <center>
+                                                <div style="font-size:0.9rem"><?php
+                                                include "../api/db.php"; 
+                                                $dashboard = new Dashboard($conn);
+                                                echo $dashboard->getSumOfTodaysReceivedAmount() ?? 0.00;
+                                                ?>
+                                                </div>
+                                                <div> <small></small> </div>
+                                              
+                                            </center>                                       
                                         </div>                                        
                                     </div>
                                     <!-- text -row -->
                              </div>
-                        </div><!-- paid amount--> 
+                        </div><!--today's receioved amount--> 
+
+                          <!--today's balance amount -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-rupee-sign gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Balance Amount
+                                            <center>
+                                                <div style="font-size:0.9rem"><?php
+                                                include "../api/db.php"; 
+                                                $dashboard = new Dashboard($conn);
+                                                echo ($dashboard->getSumOfTodaysReceivedAmount() ?? 0.00) - ($dashboard->getSumOfTodaysPaidAmount() ?? 0.00);
+                                                ?>
+                                                </div>
+                                                <div> <small></small> </div>
+                                              
+                                            </center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!--today's receioved amount--> 
+
+                          <!--  total debtors -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-users gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          All Debtors
+                                            <center><div style="font-size:0.9rem"><?php
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllDebtorsCount();
+                                            ?></div></center>                                       
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!--  total debtors -->
+
+
+                        <!--  total active debtors -->
+                        <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-check-circle gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Active Debtors
+                                            <center><div style="font-size:0.9rem"><?php
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllActiveDebtorsCount();
+                                            ?></div></center>                                       
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!--  total active debtors -->
+
+                        <!--  total inActive debtors -->
+                        <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-trash gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Deleted Debtors
+                                            <center><div style="font-size:0.9rem"><?php
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllInActiveDebtorsCount();
+                                            ?></div></center>                                       
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!--  total inActive debtors -->
+
+
+                       <!--  total transactions -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-list-alt gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                         All Transactions
+                                            <center><div style="font-size:0.9rem"><?php
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllTransactionsCount();
+                                            ?></div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- total transactions --> 
+
+                         <!--  total active transactions -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-check-circle gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                         Active Transactions
+                                            <center><div style="font-size:0.9rem"><?php
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllActiveTransactionsCount();
+                                            ?></div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- total active transactions --> 
+
+
+                          <!--  total inActive transactions -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-trash gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                         Deleted Transactions
+                                            <center><div style="font-size:0.9rem"><?php
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllInActiveTransactionsCount();
+                                            ?></div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- total inActive transactions --> 
+
+
+                        <!--total reminders -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-bell gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          All Reminders
+                                            <center><div style="font-size:0.9rem"><?php 
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllRemindersCount();
+                                            ?></div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- total reminders --> 
+
+
+                        <!--total active reminders -->
+                        <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                                    <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-check-circle gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Active Reminders
+                                            <center><div style="font-size:0.9rem"><?php 
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllActiveRemindersCount();
+                                            ?></div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- total active reminders --> 
+
+
+                        <!--total InActive reminders -->
+                        <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                                    <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-trash gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Deleted Reminders
+                                            <center><div style="font-size:0.9rem"><?php 
+                                               include "../api/db.php"; 
+                                               $dashboard = new Dashboard($conn);
+                                               echo $dashboard->getAllInActiveRemindersCount();
+                                            ?></div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- total InActive reminders --> 
+
+
+                        <!--  about -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-info-circle gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Version
+                                            <center><div style="font-size:0.9rem">V1.0.0</div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- 8th about --> 
+
+
+                         <!--  help -->
+                       <div class="col-md-6 col-lg-4 col-xl-3 mt-2">
+                             <div class="dashboard-card">
+                                        <!-- icon -->
+                                    <div class="dashboard-card-icon">
+                                        <span class="fa fa-question-circle gray-text"></span>
+                                    </div><!-- icon -->
+
+                                    <div class="vr"></div>
+                                    <!-- text -row -->
+                                    <div class="dashboard-card-text-row row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 dashboard-card-heading gray-text">
+                                          Help
+                                            <center><div style="font-size:0.9rem">
+                                          <a href="./help" class="nav-link blue-text">Go</a>
+                                        </div></center>                                       
+                                        </div>                                        
+                                    </div>
+                                    <!-- text -row -->
+                             </div>
+                        </div><!-- help --> 
 
 
                     </div><!--main row -->

@@ -21,6 +21,7 @@
           $debtorReportUri = "/DebtorBook/user/reports/debtorReport.php";
           $remindersUri = "/DebtorBook/user/reminders/reminders.php";
           $profileUri = "/DebtorBook/user/profile/index.php";
+          $trashUri = "/DebtorBook/user/trash/index.php";
           // its give active-link class if current Uri is same the link uri
           function isActiveUri($linkUri,$currentUri){               
                if($linkUri === $currentUri){
@@ -67,7 +68,7 @@
        <a class="<?php isActiveUri($profileUri,$currentUri);?>" href="<?php echo $host.$profileUri;?>"><span class="fa fa-user-circle"></span> Profile</a>
        <a href="javascript:void(0)" onclick="openInfoModal()"><span class="fa fa-info-circle"></span> About</a>
        <a href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-sign-out"></span> Logout</a>
-       <a href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-trash"></span> Trash</a>
+       <a lass="<?php isActiveUri($trashUri,$currentUri);?>" href="<?php echo $host.$trashUri;?>"><span class="fa fa-trash"></span> Trash</a>
 </div>  
 
 
