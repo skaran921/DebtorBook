@@ -20,6 +20,18 @@ class Reminders{
     }
 
 
+    
+    // **get list of all in-active reminders
+    public function getInActiveReminders(){
+        $userId = $_SESSION["user_auth_id"];
+        $sql="SELECT * FROM reminders WHERE USER_ID='$userId' AND REMINDER_STATUS='0' ORDER BY 	REMINDER_ID DESC";
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;
+    }
+
+
     // **getReminderFromId
     public function getReminderFromId($reminderId){
         $sql="SELECT * FROM reminders WHERE REMINDER_ID='$reminderId'";

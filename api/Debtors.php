@@ -19,6 +19,16 @@ class Debtors{
         return $rows;
     }
 
+    // **get list of all in-active debtors
+    public function getInActiveDebtors(){
+        $userId = $_SESSION["user_auth_id"];
+        $sql="SELECT * FROM debtors WHERE USER_ID='$userId' AND DEBTOR_STATUS='0' ORDER BY DEBTOR_ID DESC";
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;
+    }
+
      // **get debtor details from given id
      public function getDebtorById($id){
         $userId = $_SESSION["user_auth_id"];

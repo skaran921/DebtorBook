@@ -30,6 +30,12 @@
             <div class="main m-3">
                   <h1 class="gray-text"> <i class="fa fa-trash"></i> Trash</h1>                  
                   <hr/>
+
+                  <ul clas="list-group">
+                      <li class="list-group-item"> <a href="./debtorsTrash.php" class="nav-link"> <i class="fa fa-users"></i> Debtor's Trash</a>  </li>
+                      <li class="list-group-item"> <a href="./transactionTrash.php" class="nav-link"> <i class="fa fa-list-alt"></i> Transaction's Trash</a>  </li>
+                      <li class="list-group-item"> <a href="./reminderTrash.php" class="nav-link"> <i class="fa fa-bell"></i> Reminder's Trash</a>  </li>
+                  </ul>
             </div><!--main--->
         </div>
         <!-- Page content end-->
