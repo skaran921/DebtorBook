@@ -54,6 +54,17 @@
         return $rows;    
     }
 
+    // *getAllInActiveTransactions
+    public function getAllInActiveTransactions(){
+        $userId = $_SESSION["user_auth_id"];
+        $todayDate = date("d-m-Y");
+        $sql = "SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND t.TRANSACTION_STATUS='0' ORDER BY TRANSACTION_ID ASC"; 
+        $result = $this->conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+        $this->conn -> close();
+        return $rows;    
+    }
+
     // *getTransactionById
     public function getTransactionById($transactionId){       
         $sql = "SELECT * FROM transaction WHERE TRANSACTION_ID='$transactionId'"; 
