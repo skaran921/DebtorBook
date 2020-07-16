@@ -77,6 +77,7 @@ class Debtors{
         }         
     }
 
+   
     // **Active debtor in db
     public function activeDebtor($debtorId){
         $sql="UPDATE debtors SET DEBTOR_STATUS='1' WHERE DEBTOR_ID='$debtorId'";

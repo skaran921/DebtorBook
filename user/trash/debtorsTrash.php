@@ -66,13 +66,16 @@
                                 <td><?php echo $updateDate;?></td>
                                 <td>
                                   
-                                    <a href="javascript:void(0)" class="btn rounded-circle btn-success" onclick="openDebtorActiveModal(<?php echo $debtor['DEBTOR_ID'];?>)"> 
-                                       <i class="fa fa-refresh"></i>
-                                    </a>    
+                                   <form action="" method="post">
+                                      <input type="hidden" name="activeDebtorId" value="<?php echo base64_encode($debtor['DEBTOR_ID']);?>">
+                                      <button type="submit" name="restoreDebtor" class="btn rounded-circle btn-success"> 
+                                          <i class="fa fa-refresh"></i>
+                                        </button>    
 
-                                    <a href="javascript:void(0)" class="btn rounded-circle btn-danger" onclick="openDebtorDeleteModal(<?php echo $debtor['DEBTOR_ID'];?>)"> 
-                                       <i class="fa fa-trash"></i>
-                                    </a>                                   
+                                        <a href="javascript:void(0)" class="btn rounded-circle btn-danger" onclick="openDebtorDeleteModal(<?php echo $debtor['DEBTOR_ID'];?>)"> 
+                                          <i class="fa fa-trash"></i>
+                                        </a>                                   
+                                   </form>
                                 </td>
                               </tr>
                                 <?php
@@ -145,7 +148,7 @@
       </div>
       <div class="modal-body">
             <div class="text-center"> <span class="fa fa-warning text-danger" style="font-size:6rem"></span></div>
-            <div class="p-4 gray-text">Do you really want to delete this debtor A/c? </div>
+            <div class="p-4 gray-text">Do you really want to permanent delete this debtor A/c? </div>
             <div class="text-center">
                 <div class="spinner-border blue-text fade-in" role="status" style="display:none;">
                   <span class="sr-only">Loading...</span>
@@ -255,6 +258,37 @@ toastr.options = {
        history.pushState({}, "", "")
      </script>
      <?php 
+  }
+
+  // Active Debtor
+  if(isset($_POST["restoreDebtor"]) && isset($_POST["activeDebtorId"])  ){
+    $debtorId = base64_decode($_POST["activeDebtorId"]);
+    include "../../api/db.php";
+     $debtor = new Debtors($conn);
+     if($debtor->activeDebtor($debtorId)){
+          // success 
+          ?>
+          <script>
+                toastr.success("Debtor Account Restore Successfully!");
+                setTimeout(() => {
+                  window.location.reload();
+                }, 0);
+          </script>
+       <?php
+     }else{
+             // error 
+             ?>
+             <script>
+                   toastr.error('Someting went wrong',"Oops!");
+             </script>
+          <?php
+     }
+    ?>
+    <script>
+      //clear history state
+      history.pushState({}, "", "")
+    </script>
+    <?php 
   }
 ?>
 </body>
