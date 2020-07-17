@@ -70,7 +70,7 @@
                                       <input type="hidden" name="activeDebtorId" value="<?php echo base64_encode($debtor['DEBTOR_ID']);?>">
                                       <button type="submit" name="restoreDebtor" class="btn rounded-circle btn-success"> 
                                           <i class="fa fa-refresh"></i>
-                                        </button>    
+                                      </button>    
 
                                         <a href="javascript:void(0)" class="btn rounded-circle btn-danger" onclick="openDebtorDeleteModal(<?php echo $debtor['DEBTOR_ID'];?>)"> 
                                           <i class="fa fa-trash"></i>

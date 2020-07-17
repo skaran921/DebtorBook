@@ -43,6 +43,23 @@
     }
 
 
+    // *activateTransaction
+    public function activateTransaction($transactionId,$debtorId){
+        $sql="SELECT count(*) as isActiveTransaction FROM debtors WHERE DEBTOR_ID ='$debtorId' AND DEBTOR_STATUS='1'";
+        $result = $this->conn->query($sql);
+        if($row=$result->fetch_assoc()){
+            if($row["isActiveTransaction"]){
+                $sql = "UPDATE transaction SET TRANSACTION_STATUS='1' WHERE TRANSACTION_ID='$transactionId'";
+                return $this->conn->query($sql);
+            }else{
+                return -1;
+            }
+        }else{
+            return false;
+        }
+        
+    }
+
     // *getTodayTransaction
     public function getTodayTransaction(){
         $userId = $_SESSION["user_auth_id"];
@@ -58,7 +75,7 @@
     public function getAllInActiveTransactions(){
         $userId = $_SESSION["user_auth_id"];
         $todayDate = date("d-m-Y");
-        $sql = "SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND t.TRANSACTION_STATUS='0' ORDER BY TRANSACTION_ID ASC"; 
+        $sql = "SELECT t.TRANSACTION_ID,t.TRANSACTION_DATE,t.TRANSACTION_REMARK, t.PAY_AMOUNT, t.RECEIVED_AMOUNT,t.TRANSACTION_CREATE_DATE,t.TRANSACTION_UPDATE_DATE,t.DEBTOR_ID, debtors.DEBTOR_NAME,debtors.DEBTOR_MOBILE,debtors.DEBTOR_EMAIL,debtors.DEBTOR_ADDRESS FROM transaction t LEFT JOIN debtors on t.DEBTOR_ID = debtors.DEBTOR_ID where t.USER_ID =$userId AND t.TRANSACTION_STATUS='0' ORDER BY TRANSACTION_ID ASC"; 
         $result = $this->conn->query($sql);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         $this->conn -> close();

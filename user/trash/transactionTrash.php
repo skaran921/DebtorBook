@@ -85,9 +85,18 @@
                                 <td><?php echo $transaction['TRANSACTION_REMARK'];?></td>
                                 <td><?php echo $transaction['PAY_AMOUNT'] == 0.00 ? "<div class='ml-4'>-</div>" : $transaction['PAY_AMOUNT'];?></td>
                                 <td><?php echo $transaction['RECEIVED_AMOUNT'] == 0.00 ? "<div class='ml-4'>-</div>":$transaction['RECEIVED_AMOUNT'];?></td>
-                                <td>                                 
-                                    <a href="javascript:void(0)" class="btn rounded-circle btn-success" onclick="window.open('../transactions/editTransaction.php?transaction=<?php echo $encryted_transaction_id;?>','_blank')"> <i class="fa fa-refresh"></i> </a>
-                                    <a href="javascript:void(0)" class="btn rounded-circle btn-danger" onclick="openTransactionDeleteModal(<?php echo $transaction['TRANSACTION_ID'];?>)"> <i class="fa fa-trash"></i> </a>                                   
+                                <td> 
+                                   <form action="" method="post">
+                                      <input type="hidden" name="activeTransactionId" value="<?php echo base64_encode($transaction['TRANSACTION_ID']);?>">
+                                      <input type="hidden" name="activeTransactionDebtorId" value="<?php echo base64_encode($transaction['DEBTOR_ID']);?>">
+                                      <button type="submit" name="restoreTransaction" class="btn rounded-circle btn-success"> 
+                                          <i class="fa fa-refresh"></i>
+                                      </button>   
+
+                                    <a href="javascript:void(0)" class="btn rounded-circle btn-danger" onclick="openTransactionDeleteModal(<?php echo $transaction['TRANSACTION_ID'];?>)">
+                                        <i class="fa fa-trash"></i>
+                                    </a>                                   
+                                   </form>                                
                                 </td>
                               </tr>
                                 <?php
@@ -111,66 +120,6 @@
                   </div>
             </div> <!---main -------->
     </div><!-- Page content end-->
-
- <!--view transaction Modal -->
-<div class="modal fade" id="transactionInfoModal" tabindex="-1" role="dialog" aria-labelledby="transactionInfoModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title gray-text" id="exampleModalLabel ">Transaction Info</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="row">
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <h6 class="text-rem1 gray-text">Date</h6>
-                      <small id="transactionDate" class="gray-text"></small>
-               </div>
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <h6 class="text-rem1 gray-text">Debtor Name</h6>
-                      <small id="debtorName" class="gray-text"></small>
-               </div>
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <h6 class="gray-text">Debtor Mobile</h6>
-                      <small id="debtorMobile" class="gray-text"></small>
-               </div>
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <h6 class="gray-text">Debtor Email</h6>
-                      <small id="debtorEmail" class="gray-text"></small>
-               </div>
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <h6 class="gray-text">Create on</h6>
-                      <small id="debtorCreateOn" class="gray-text"></small>
-               </div>
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <h6 class="gray-text">Update on</h6>
-                      <small id="debtorUpdateOn" class="gray-text"></small>
-               </div>
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <h6 class="gray-text">Pay Amount</h6>
-                      <small id="payAmount" class="gray-text"></small>
-               </div>
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <h6 class="gray-text">Received Amount</h6>
-                      <small id="receivedAmount" class="gray-text"></small>
-               </div>
-               <div class="col-md-12 border-bottom pt-2 mb-1">
-                      <ul style="list-style:none;display: inline-flex;font-size:22px;">
-                          <li class="p-2"><a href="#" id="debtorCallBtn"><i class="fa fa-phone text-success"></i></a> <li>
-                        <li class="p-2"><a href="#" id="debtorSmsBtn"><i class="fa fa-envelope-open"></i></a> </li>
-                         <li class="p-2"><a href="#" id="debtorMailBtn"><i class="fa fa-envelope text-danger"></i> </a></li>
-                         <li class="p-2"><a href="#" id="debtorWhatsappBtn" target="_blank"><i class="fa fa-whatsapp text-success"></i> </a></li>
-                          </li>
-                      </ul>
-               </div>
-          </div>
-
-      </div>     
-    </div>
-  </div>
-</div>
 
  <!--transaction delete Modal -->
  <div class="modal fade" id="transactionDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -230,32 +179,6 @@ toastr.options = {
 
 
 <script>
-    //  *openTransactionInfoModal
-    function openTransactionInfoModal(transactionDate,name,mobile,email,address,createDate,updateDate,payAmount,receivedAmount){
-            $("#transactionDate").text(transactionDate);
-            $("#debtorName").text(name);
-            $("#debtorMobile").text(mobile);
-            $("#debtorEmail").text(email);
-            $("#debtorAddress").text(address);
-            $("#debtorCreateOn").text(createDate);
-            $("#debtorUpdateOn").text(updateDate);
-            $("#payAmount").text(payAmount);
-            $("#receivedAmount").text(receivedAmount);
-            $("#debtorCallBtn").prop("href",`tel:+91${mobile}`);
-            $("#debtorSmsBtn").prop("href",`sms:+91${mobile}`);
-            $("#debtorWhatsappBtn").prop("href",`https://api.whatsapp.com/send?phone=+91${mobile}"`);
-            if(email.length === 0){
-                $("#debtorMailBtn").hide();
-            }else{
-                $("#debtorMailBtn").prop("href",`mailto:${email}`);
-                $("#debtorMailBtn").show();
-            }
-            $('#transactionInfoModal').modal({
-                backdrop: 'static',
-                keyboard: false
-           })
-    }
-
     // openDebtorDeleteModal
    function openTransactionDeleteModal(transactionId){
            $("#deleteTransactionId").val(transactionId);
@@ -270,7 +193,7 @@ $("#pageLoading").hide();
 </script>
 
 <?php 
-  // delete debtor
+  // delete transaction
   if(isset($_POST["deleteTransaction"])){
     //   show loader
      ?>
@@ -307,6 +230,48 @@ $("#pageLoading").hide();
        history.pushState({}, "", "")
      </script>
      <?php 
+  }
+
+
+  
+  // Activate Transaction
+  if(isset($_POST["restoreTransaction"]) && isset($_POST["activeTransactionId"])  && isset($_POST["activeTransactionDebtorId"])  ){
+    $transactionId = base64_decode($_POST["activeTransactionId"]);
+    $debtorId = base64_decode($_POST["activeTransactionDebtorId"]);
+    include "../../api/db.php";
+     $transaction = new Transactions($conn);
+     $result = $transaction->activateTransaction($transactionId,$debtorId);
+     if($result === -1){
+            // success 
+            ?>
+            <script>
+                 toastr.error('Please Activate Debtor A/c First',"Oops!");                 
+            </script>
+        <?php
+      }elseif($result){
+          // success 
+          ?>
+          <script>
+                toastr.success("Transaction Restore Successfully!");
+                setTimeout(() => {
+                  window.location.reload();
+                }, 0);
+          </script>
+       <?php
+     }else{
+             // error 
+          ?>
+             <script>
+                   toastr.error('Someting went wrong',"Oops!");
+             </script>
+          <?php
+     }
+    ?>
+    <script>
+      //clear history state
+      history.pushState({}, "", "")
+    </script>
+    <?php 
   }
 ?>
 </body>
