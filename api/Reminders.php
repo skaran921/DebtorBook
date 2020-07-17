@@ -57,7 +57,7 @@ class Reminders{
 
        // **deleteReminder
        public function deleteReminder($reminderId){
-        $sql="DELETE reminders WHERE REMINDER_ID='$reminderId'";
+        $sql="DELETE FROM reminders WHERE REMINDER_ID='$reminderId'";
         return $this->conn->query($sql);
     }
 

@@ -68,7 +68,7 @@
        <a class="<?php isActiveUri($profileUri,$currentUri);?>" href="<?php echo $host.$profileUri;?>"><span class="fa fa-user-circle"></span> Profile</a>
        <a href="javascript:void(0)" onclick="openInfoModal()"><span class="fa fa-info-circle"></span> About</a>
        <a href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-sign-out"></span> Logout</a>
-       <a lass="<?php isActiveUri($trashUri,$currentUri);?>" href="<?php echo $host.$trashUri;?>"><span class="fa fa-trash"></span> Trash</a>
+       <a class="<?php isActiveUri($trashUri,$currentUri);?>" href="<?php echo $host.$trashUri;?>"><span class="fa fa-trash"></span> Trash</a>
 </div>  
 
 
