@@ -101,7 +101,7 @@
             </div> <!---main -------->
     </div><!-- Page content end-->
 
- <!--transaction delete Modal -->
+ <!--reminder delete Modal -->
  <div class="modal fade" id="reminderDeleteModal" tabindex="-1" role="dialog" aria-labelledby="reminderDeleteModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -113,7 +113,12 @@
       </div>
       <div class="modal-body">
             <div class="text-center"> <span class="fa fa-warning text-danger" style="font-size:6rem"></span></div>
-            <div class="p-4 gray-text">Do you really want to delete this reminder? </div>
+            <div class="p-4 gray-text">
+                   Do you really want to delete this reminder ? 
+                   <br/>
+                    Note: <small>After delete you are can't able to restore this reminder. </small> 
+            </div>
+            <div class="p-4 gray-text">  </div>
             <div class="text-center">
                 <div class="spinner-border blue-text fade-in" id="deleteReminderLoading" role="status" style="display:none;">
                   <span class="sr-only">Loading...</span>
@@ -185,7 +190,7 @@ $("#pageLoading").hide();
      $reminderId = $_POST["deleteReminderId"];
      include "../../api/db.php";
      $reminder = new Reminders($conn);
-     if($reminder->setInactiveReminder($reminderId)){
+     if($reminder->deleteReminder($reminderId)){
           // success 
           ?>
           <script>
@@ -207,6 +212,7 @@ $("#pageLoading").hide();
      ?>
      <script>
        //clear history state
+       $("#deleteReminderLoading").hide();
        history.pushState({}, "", "")
      </script>
      <?php 
@@ -228,6 +234,7 @@ $("#pageLoading").hide();
                   window.location.reload();
                 }, 0);
           </script>
+
        <?php
      }else{
              // error 
