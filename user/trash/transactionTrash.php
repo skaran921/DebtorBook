@@ -205,7 +205,7 @@ $("#pageLoading").hide();
      $transactionId = $_POST["deleteTransactionId"];
      include "../../api/db.php";
      $transaction = new Transactions($conn);
-     if($transaction->inActiveTransaction($transactionId)){
+     if($transaction->deleteTransaction($transactionId)){
           // success 
           ?>
           <script>
@@ -227,6 +227,7 @@ $("#pageLoading").hide();
      ?>
      <script>
        //clear history state
+       $("#deleteTransactionLoading").hide();
        history.pushState({}, "", "")
      </script>
      <?php 
