@@ -55,6 +55,12 @@ class Reminders{
         return $this->conn->query($sql);
     }
 
+    // **setActiveReminder
+    public function setActiveReminder($reminderId){
+        $sql="UPDATE reminders SET REMINDER_STATUS='1' WHERE REMINDER_ID='$reminderId'";
+        return $this->conn->query($sql);
+    }
+
 
     // **updateReminder
     public function updateReminder($reminderId,$reminderDate,$reminder){

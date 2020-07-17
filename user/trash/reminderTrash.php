@@ -78,9 +78,16 @@
                                 <td><?php echo $reminder['REMINDER_DATE'];?></td>
                                 <td><?php echo $reminder['REMINDER'];?></td>
                                 <td><?php echo $reminder_update_at;?></td>
-                                <td>                                 
-                                    <a href="javascript:void(0)" class="btn rounded-circle btn-success" onclick="window.open('./editReminder.php?reminder=<?php echo $encryted_reminder_id;?>','_blank')"> <i class="fa fa-refresh"></i> </a>
+                                <td>                
+                                    <form action="" method="post">
+                                      <input type="hidden" name="activeReminderId" value="<?php echo base64_encode($reminder['REMINDER_ID']);?>">
+                                      <button type="submit" name="restoreReminder" class="btn rounded-circle btn-success"> 
+                                          <i class="fa fa-refresh"></i>
+                                      </button>   
+
+                                                                 
                                     <a href="javascript:void(0)" class="btn rounded-circle btn-danger" onclick="openReminderDeleteModal(<?php echo $reminder['REMINDER_ID'];?>)"> <i class="fa fa-trash"></i> </a>                                   
+                                   </form>                     
                                 </td>
                               </tr>
                                 <?php
@@ -203,6 +210,39 @@ $("#pageLoading").hide();
        history.pushState({}, "", "")
      </script>
      <?php 
+  }
+
+  // Activate reminder
+  if(isset($_POST["restoreReminder"]) && isset($_POST["activeReminderId"])  ){
+    $reminderId = base64_decode($_POST["activeReminderId"]);
+   
+    include "../../api/db.php";
+    $reminder = new Reminders($conn);     
+     $result = $reminder->setActiveReminder($reminderId);
+      if($result){
+          // success 
+          ?>
+          <script>
+                toastr.success("Transaction Restore Successfully!");
+                setTimeout(() => {
+                  window.location.reload();
+                }, 0);
+          </script>
+       <?php
+     }else{
+             // error 
+          ?>
+             <script>
+                   toastr.error('Someting went wrong',"Oops!");
+             </script>
+          <?php
+     }
+    ?>
+    <script>
+      //clear history state
+      history.pushState({}, "", "")
+    </script>
+    <?php 
   }
 ?>
 </body>
