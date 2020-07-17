@@ -195,28 +195,6 @@ toastr.options = {
 
 <script>
    
-    function openDebtorInfoModal(name,mobile,email,address,createDate,updateDate){
-            $("#debtorName").text(name);
-            $("#debtorMobile").text(mobile);
-            $("#debtorEmail").text(email);
-            $("#debtorAddress").text(address);
-            $("#debtorCreateOn").text(createDate);
-            $("#debtorUpdateOn").text(updateDate);
-            $("#debtorCallBtn").prop("href",`tel:+91${mobile}`);
-            $("#debtorSmsBtn").prop("href",`sms:+91${mobile}`);
-            $("#debtorWhatsappBtn").prop("href",`https://api.whatsapp.com/send?phone=+91${mobile}"`);
-            if(email.length === 0){
-                $("#debtorMailBtn").hide();
-            }else{
-                $("#debtorMailBtn").prop("href",`mailto:${email}`);
-                $("#debtorMailBtn").show();
-            }
-            $('#debtorInfoModal').modal({
-                backdrop: 'static',
-                keyboard: false
-           })
-    }
-
     // openDebtorDeleteModal
    function openDebtorDeleteModal(debtorId){
            $("#deleteDebtorId").val(debtorId);
@@ -233,7 +211,14 @@ toastr.options = {
      $debtorId = $_POST["deleteDebtorId"];
      include "../../api/db.php";
      $debtor = new Debtors($conn);
-     if($debtor->inActiveDebtor($debtorId)){
+     $result = $debtor->deleteDebtor($debtorId);
+     if($result === -1){
+      ?>
+        <script>
+              toastr.error("Please Delete Debotor's Transactions.","Oops!");
+        </script>
+     <?php
+     }elseif($result){
           // success 
           ?>
           <script>

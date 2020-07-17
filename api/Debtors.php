@@ -76,6 +76,25 @@ class Debtors{
             return false;
         }         
     }
+    
+    // **delete debtor in db
+    public function deleteDebtor($debtorId){
+        $userId = $_SESSION["user_auth_id"];
+        $sql = "SELECT  COUNT(*) AS total from transaction where DEBTOR_ID ='$debtorId' AND USER_ID='$userId'";
+        $result = $this->conn->query($sql);
+        if($row = $result->fetch_assoc()){
+            if($row["total"] === 0){
+                //delete debtor a/c
+                $sql="DELETE FROM debtors WHERE DEBTOR_ID='$debtorId'";
+                return $this->conn->query($sql);
+            }else{
+                return -1;
+            }
+           
+        }else{
+            return false;
+        }         
+    }
 
    
     // **Active debtor in db
@@ -84,10 +103,5 @@ class Debtors{
         return $this->conn->query($sql);        
     }
 
-    // **DELETE debtor FROM db
-    public function deleteDebtor($debtorId){
-        $sql="DELETE FROM debtors WHERE DEBTOR_ID='$debtorId'";
-        return $this->conn->query($sql);        
-    }
 }
 ?>
