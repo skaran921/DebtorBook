@@ -39,11 +39,11 @@
             }
        }
         ?>
-       <a href="<?php echo $host.$dashboardUri;?>" class="<?php isActiveUri($dashboardUri,$currentUri);?>"> <span class="fa fa-dashboard"></span>  Dashboard</a>
-       <a href="<?php echo $host.$debtorUrl;?>" class="<?php isActiveUri($debtorUrl,$currentUri);?>"> <span class="fa fa-users"></span> Debtors</a>
-       <a href="<?php echo $host.$paymentUri;?>" class="<?php isActiveUri($paymentUri,$currentUri);?>"><span class="fa fa-money"></span> Payment</a>
-       <a href="<?php echo $host.$receivedUri;?>" class="<?php isActiveUri($receivedUri,$currentUri);?>"> <span class="fa fa-rupee-sign"></span> Received</a>
-       <a href="<?php echo $host.$dayBookUri;?>" class="<?php isActiveUri($dayBookUri,$currentUri);?>"><span class="fa fa-book"></span> Day Book</a>
+       <a accesskey="h" href="<?php echo $host.$dashboardUri;?>" class="<?php isActiveUri($dashboardUri,$currentUri);?>"> <span class="fa fa-dashboard"></span>  Dashboard</a>
+       <a Accesskey="O" href="<?php echo $host.$debtorUrl;?>" class="<?php isActiveUri($debtorUrl,$currentUri);?>"> <span class="fa fa-users"></span> Debtors</a>
+       <a accesskey="p"  href="<?php echo $host.$paymentUri;?>" class="<?php isActiveUri($paymentUri,$currentUri);?>"><span class="fa fa-money"></span> Payment</a>
+       <a accesskey="r" href="<?php echo $host.$receivedUri;?>" class="<?php isActiveUri($receivedUri,$currentUri);?>"> <span class="fa fa-rupee-sign"></span> Received</a>
+       <a accesskey="b" href="<?php echo $host.$dayBookUri;?>" class="<?php isActiveUri($dayBookUri,$currentUri);?>"><span class="fa fa-book"></span> Day Book</a>
        <div class="dropright">
             <a   class="dropdown-toggle <?php isActiveReportsUri($currentUri=== $currentMonthReportUri || $currentUri === $currentYearReportUri || $currentUri === $paidAmountReportUri || $currentUri === $receivedAmountReportUri
               || $currentUri === $reportBetweenTwoDateUri  || $currentUri === $searchTransactionUri || $currentUri === $debtorWiseReportUri
@@ -55,20 +55,20 @@
                   Reports
             </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item <?php isActiveUri($currentMonthReportUri,$currentUri);?>" href="<?php echo $host.$currentMonthReportUri;?>">Current Month</a>
-            <a class="dropdown-item <?php isActiveUri($currentYearReportUri,$currentUri);?>" href="<?php echo $host.$currentYearReportUri;?>">Current Year</a>
-            <a class="dropdown-item <?php isActiveUri($paidAmountReportUri,$currentUri);?>" href="<?php echo $host.$paidAmountReportUri;?>">Paid Amount</a>
-            <a class="dropdown-item <?php isActiveUri($receivedAmountReportUri,$currentUri);?>" href="<?php echo $host.$receivedAmountReportUri;?>">Received Amount</a>
-            <a class="dropdown-item <?php isActiveUri($reportBetweenTwoDateUri,$currentUri);?>" href="<?php echo $host.$reportBetweenTwoDateUri;?>">Between a Period</a>
-            <a class="dropdown-item <?php isActiveUri($searchTransactionUri,$currentUri);?>" href="<?php echo $host.$searchTransactionUri;?>"> <span class="fa fa-search"></span> Search</a>
-            <a class="dropdown-item <?php isActiveUri($debtorWiseReportUri,$currentUri);?>" href="<?php echo $host.$debtorWiseReportUri;?>"> <span class="fa fa-users"></span> Debtors Report</a>
+            <a accesskey="c" class="dropdown-item <?php isActiveUri($currentMonthReportUri,$currentUri);?>" href="<?php echo $host.$currentMonthReportUri;?>"> <i class="fa fa-calendar-alt"></i> Current Month</a>
+            <a accesskey="y" class="dropdown-item <?php isActiveUri($currentYearReportUri,$currentUri);?>" href="<?php echo $host.$currentYearReportUri;?>"><i class="fa fa-calendar-alt"></i> Current Year</a>
+            <a accesskey="u" class="dropdown-item <?php isActiveUri($paidAmountReportUri,$currentUri);?>" href="<?php echo $host.$paidAmountReportUri;?>"><i class="fa fa-money"></i> Paid Amount</a>
+            <a accesskey="n" class="dropdown-item <?php isActiveUri($receivedAmountReportUri,$currentUri);?>" href="<?php echo $host.$receivedAmountReportUri;?>"><i class="fa fa-rupee-sign"></i> Received Amount</a>
+            <a accesskey="w" class="dropdown-item <?php isActiveUri($reportBetweenTwoDateUri,$currentUri);?>" href="<?php echo $host.$reportBetweenTwoDateUri;?>"> <i class="fa fa-calendar-plus"></i> Between a Period</a>
+            <a accesskey="s" class="dropdown-item <?php isActiveUri($searchTransactionUri,$currentUri);?>" href="<?php echo $host.$searchTransactionUri;?>"> <span class="fa fa-search"></span> Search</a>
+            <a accesskey="z" class="dropdown-item <?php isActiveUri($debtorWiseReportUri,$currentUri);?>" href="<?php echo $host.$debtorWiseReportUri;?>"> <span class="fa fa-users"></span> Debtors Report</a>
           </div>
        </div>      
-       <a class="<?php isActiveUri($remindersUri,$currentUri);?>" href="<?php echo $host.$remindersUri;?>"> <span class="fa fa-bell"></span> Reminders</a>
-       <a class="<?php isActiveUri($profileUri,$currentUri);?>" href="<?php echo $host.$profileUri;?>"><span class="fa fa-user-circle"></span> Profile</a>
-       <a href="javascript:void(0)" onclick="openInfoModal()"><span class="fa fa-info-circle"></span> About</a>
-       <a href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-sign-out"></span> Logout</a>
-       <a class="<?php isActiveUri($trashUri,$currentUri);?>" href="<?php echo $host.$trashUri;?>"><span class="fa fa-trash"></span> Trash</a>
+       <a accesskey="i"  class="<?php isActiveUri($remindersUri,$currentUri);?>" href="<?php echo $host.$remindersUri;?>"> <span class="fa fa-bell"></span> Reminders</a>
+       <a accesskey="m" class="<?php isActiveUri($profileUri,$currentUri);?>" href="<?php echo $host.$profileUri;?>"><span class="fa fa-user-circle"></span> Profile</a>
+       <a accesskey="a" href="javascript:void(0)" onclick="openInfoModal()"><span class="fa fa-info-circle"></span> About</a>
+       <a accesskey="l" href="javascript:void(0)" class="text-danger" onclick="openLogoutModal()"><span class="fa fa-sign-out"></span> Logout</a>
+       <a accesskey="t" class="<?php isActiveUri($trashUri,$currentUri);?>" href="<?php echo $host.$trashUri;?>"><span class="fa fa-trash"></span> Trash</a>
 </div>  
 
 
@@ -113,8 +113,15 @@
       </div>
       <div class="modal-body">
             <div class="text-center"> <span class="fa fa-info-circle blue-text" style="font-size:6rem"></span></div>
-            <div class="mb-1 gray-text">Designed and developed by Karan Soni</div>           
-            <div class="mb-1 gray-text">July 2020 V1.0.0</div>           
+            <div class="mb-1 text-center gray-text">
+               Designed and developed by Karan Soni               
+            </div>           
+            <div class="mb-1 gray-text text-center">July 2020 V1.0.0</div>           
+            <div class="gray-text">
+            <p><i class="fa fa-envelope"></i> skaran921@gmail.com</p>
+               <p><i class="fa fa-github"></i> skaran921</p>
+               <p><i class="fa fa-twitter"></i> skaran921</p>
+            </div>
       </div>  
       <div class="modal-footer">
            <button type="button" class="btn light-white text-white blue" data-dismiss="modal" aria-label="Close">Close</button>       
