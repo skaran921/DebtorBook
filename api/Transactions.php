@@ -60,6 +60,12 @@
         
     }
 
+     // *deleteTransaction
+     public function deleteTransaction($transactionId){      
+        $sql = "DELETE FROM transaction WHERE TRANSACTION_ID='$transactionId'";
+        return $this->conn->query($sql);        
+    }
+
     // *getTodayTransaction
     public function getTodayTransaction(){
         $userId = $_SESSION["user_auth_id"];
