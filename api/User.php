@@ -8,6 +8,14 @@
         $this->conn = $conn;
     }
 
+
+     //* [insertNewUser] it will insert new user into DBs
+     public function insertNewUser($userFirstName,$userLastName,$userMobile,$userAddress,$userEmail,$userEncryptedPassword){
+      $sql="INSERT INTO users(USER_FIRST_NAME,USER_LAST_NAME,USER_MOBILE,USER_ADDRESS,USER_EMAIL,USER_PASSWORD)VALUES('$userFirstName','$userLastName','$userMobile','$userAddress','$userEmail','$userEncryptedPassword')";
+      return $this->conn->query($sql);      
+    }
+
+
     //* [getUserFirstName] it will give us current user first name
     public function getUserFirstName($userId){
       $sql="SELECT USER_FIRST_NAME from users WHERE USER_ID='$userId'";
@@ -27,7 +35,7 @@
         return [];
       }
     }
-
+     
      //* [getUserLastName] it will give us current user last name
      public function getUserLastName($userId){
       $sql="SELECT USER_LAST_NAME from users WHERE USER_ID='$userId'";
