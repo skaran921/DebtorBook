@@ -4,6 +4,8 @@ A PHP Application like Khata Book which keeps records of yours debotors.
 <div> <img src="./screenshots/1.png" width="800" height="450"/></div>
 <div> <img src="./screenshots/2.png" width="800" height="450"/></div>
 <div> <img src="./screenshots/3.png" width="800" height="450"/></div>
+<div> <img src="./screenshots/25.png" width="800" height="450"/></div>
+<div> <img src="./screenshots/26.png" width="800" height="450"/></div>
 <div> <img src="./screenshots/4.png" width="800" height="450""/></div>
 <div> <img src="./screenshots/6.png" width="800" height="450"/></div>
 <div> <img src="./screenshots/7.png" width="800" height="450"/></div>
@@ -24,5 +26,4 @@ A PHP Application like Khata Book which keeps records of yours debotors.
 <div> <img src="./screenshots/22.png" width="800" height="450"/></div>
 <div> <img src="./screenshots/23.png" width="800" height="450"/></div>
 <div> <img src="./screenshots/24.png" width="800" height="450"/></div>
-<div> <img src="./screenshots/25.png" width="800" height="450"/></div>
-<div> <img src="./screenshots/26.png" width="800" height="450"/></div>
+
