@@ -29,7 +29,7 @@ session_start();
             <!-- sign in text-->
             <div class="sign-in-text text-right p-2">
               <span class="gray-text">New user?</span>
-              <span class="blue-text">Sign up</span>
+              <a href="./signup" class="blue-text text-decoration-none">Sign up</a>
             </div>
             <!-- sign in form -->
             <div class="sign-in-form p-4 text-center">
@@ -124,7 +124,7 @@ session_start();
                 <?php
               }else{
                 // check user authentication
-              echo  $password = md5($password);
+                $password = md5($password);
 
                 include "./api/db.php";
                 $sql =  $conn->prepare("SELECT * FROM users WHERE USER_EMAIL= ? AND USER_PASSWORD= ? AND USER_STATUS= ?");

@@ -90,9 +90,9 @@
       <div class="modal-footer">
            <button type="button" class="btn light-white gray-text" data-dismiss="modal" aria-label="Close">Cancel</button>          
            <form>
-              <button type="btn" onclick="openLogout()" >
+              <a href="http://localhost/DebtorBook/user/logout.php"  class="btn blue text-white" onclick="openLogout()" >
                  <i class="fa fa-sign-out"></i> Logout
-              </button>
+              </a>
            </form>
       </div>     
     </div>
@@ -129,9 +129,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  function openLogout(){
-    window.open('http://localhost/DebtorBook/user/logout.php','_self');
-  }
-</script>

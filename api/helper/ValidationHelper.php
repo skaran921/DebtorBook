@@ -23,8 +23,8 @@
       }
 
       //   ****************Validate indian Mobile No.********************
-    public static function validateMobile($password){
-      return preg_match("/^[6789][0-9]{9}$/",$password);
+    public static function validateMobile($mobile){
+      return preg_match("/^[6789][0-9]{9}$/",$mobile);
     }
 
     //   ****************Validate date(dd-mm-yyyy).********************
