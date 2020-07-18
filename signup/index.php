@@ -218,7 +218,7 @@ session_start();
                     $(".error_msg").show();
                 </script>
              <?php
-              }elseif(!ValidationHelper::validateEmail($mobile)){
+              }elseif(!ValidationHelper::validateMobile($mobile)){
                 //  if mobile no. validation failed
              ?>
              <script>
