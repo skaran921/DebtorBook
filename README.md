@@ -1,7 +1,7 @@
 # DebtorBook
 A PHP Application like Khata Book which keeps records of yours debotors.
 
-<div> <img src="./screenshots/1.png" width="800" height="450"/></div>
+<div> <img src="./screenshots/1.png" style="width:100%;height:auto;"/></div>
 <div> <img src="./screenshots/2.png" width="800" height="450"/></div>
 <div> <img src="./screenshots/3.png" width="800" height="450"/></div>
 <div> <img src="./screenshots/25.png" width="800" height="450"/></div>
