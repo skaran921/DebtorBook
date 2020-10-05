@@ -74,7 +74,7 @@
 
 
 <!--logout Modal -->
-<div class="modal fade" id="logoutModal"  role="dialog" aria-labelledby="logoutModal" aria-hidden="true">
+<div class="modal fade" id="logoutModal"  role="dialog" aria-labelledby="logoutModal" aria-hidden="true" style="z-index:99999">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -102,7 +102,7 @@
 
 
 <!--Info Modal -->
-<div class="modal fade" id="infoModal"  role="dialog" aria-labelledby="infoModal" aria-hidden="true">
+<div class="modal fade" id="infoModal"  role="dialog" aria-labelledby="infoModal" aria-hidden="true" style="z-index:99999">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
