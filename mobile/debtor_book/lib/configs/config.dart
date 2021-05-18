@@ -12,5 +12,5 @@ class Configs {
   static const Color whiteIndigo = Color(0xFFF9fafc);
 
   /// fontFamily
-  static String fontFamily = GoogleFonts.poppins().fontFamily;
+  static String? fontFamily = GoogleFonts.poppins().fontFamily;
 }
