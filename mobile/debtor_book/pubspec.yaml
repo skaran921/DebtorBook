@@ -35,6 +35,7 @@ dependencies:
   velocity_x: ^3.0.0
   get: ^4.1.4
   flutter_shimmer: ^2.0.0-prerelease-nullsafety
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:
