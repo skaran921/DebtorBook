@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                CustomTextField(hintText: "Email"),
+                CustomTextField(hintText: "Email", kbdType: TextInputType.emailAddress),
                 20.0.heightBox,
                 CustomTextField(
                   hintText: "Password",

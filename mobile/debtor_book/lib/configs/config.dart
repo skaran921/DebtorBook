@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' show Color;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Configs {
   /// colors
@@ -13,4 +14,8 @@ class Configs {
 
   /// fontFamily
   static String? fontFamily = GoogleFonts.poppins().fontFamily;
+
+  /// shared preferences
+  static late SharedPreferences prefs;
+  static const String loginPrefs = "loginPrefs";
 }
