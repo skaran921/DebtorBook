@@ -18,9 +18,12 @@ class MyThemes {
         accentColor: Configs.primaryColor,
         fontFamily: fontFamily,
         iconTheme: IconThemeData(color: Configs.primaryColor),
-        textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(backgroundColor: Configs.primaryColor)),
+        // textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(backgroundColor: Configs.primaryColor)),
         elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)))),
+            style: ElevatedButton.styleFrom(
+          side: BorderSide.none,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+        )),
         inputDecorationTheme: InputDecorationTheme(
             filled: true,
             fillColor: Configs.whiteColor,

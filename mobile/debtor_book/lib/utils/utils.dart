@@ -8,6 +8,8 @@ extension stringExtension on String {
       height: height,
     );
   }
+
+  String toRupeeSign() => "₹";
 }
 
 extension iconExtension on IconData {
