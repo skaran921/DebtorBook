@@ -2,6 +2,7 @@
     package="com.example.debtor_book">
    <application
         android:label="debtor_book"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -1,4 +1,6 @@
+import 'package:debtor_book/configs/config.dart';
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 extension stringExtension on String {
   Widget toPNG({double? width, double? height}) {
@@ -18,4 +20,19 @@ extension iconExtension on IconData {
         color: color,
         size: size,
       );
+}
+
+void hideKbd(BuildContext context) {
+  FocusScope.of(context).unfocus();
+}
+
+Map<String, dynamic> decodeJwtToken(jwtToken) {
+  return JwtDecoder.decode(jwtToken);
+}
+
+bool isUserLoggedIn() {
+  if (Configs.prefs.getString(Configs.loginPrefs) != null && Configs.prefs.getString(Configs.loginPrefs)!.isNotEmpty) {
+    return true;
+  }
+  return false;
 }

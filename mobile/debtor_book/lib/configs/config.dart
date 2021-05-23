@@ -18,4 +18,8 @@ class Configs {
   /// shared preferences
   static late SharedPreferences prefs;
   static const String loginPrefs = "loginPrefs";
+
+  /// base url config
+  static const String baseUrl = "http://172.20.10.3/debtorbook/api/server.php";
+  static const String baseUrl1 = "http://192.168.43.138/debtorbook/api/server.php";
 }
