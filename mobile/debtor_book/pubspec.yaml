@@ -30,7 +30,9 @@ dependencies:
   font_awesome_flutter: ^9.0.0
   lottie: ^1.0.1
   google_fonts: ^2.1.0
-  dio: ^4.0.0
+  # dio: ^4.0.0
+  http: ^0.13.3
+  jwt_decoder: ^2.0.1
   flutter_svg: ^0.22.0
   velocity_x: ^3.0.0
   get: ^4.1.4
