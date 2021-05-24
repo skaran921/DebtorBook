@@ -11,9 +11,12 @@ class Configs {
   static const Color grayColor = Color(0xFFa7a6ac);
   static const Color whiteGrayColor = Color(0xFFF1F1F1);
   static const Color whiteIndigo = Color(0xFFF9fafc);
+  static const Color greenColor = Color(0xFF55D8B9);
 
   /// fontFamily
   static String? fontFamily = GoogleFonts.poppins().fontFamily;
+
+  static const String rupeeSign = "₹";
 
   /// shared preferences
   static late SharedPreferences prefs;
