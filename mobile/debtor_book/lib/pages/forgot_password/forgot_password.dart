@@ -1,4 +1,5 @@
 import 'package:debtor_book/configs/config.dart';
+import 'package:debtor_book/widgets/custom_header.dart';
 import 'package:debtor_book/widgets/custom_text_btn.dart';
 import 'package:debtor_book/widgets/custom_text_field.dart';
 import 'package:flutter/cupertino.dart' show CupertinoFormSection;
@@ -15,20 +16,7 @@ class ForgotPassword extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios,
-                      color: Configs.primaryColor.withOpacity(0.8),
-                    ),
-                    "Login".text.color(Configs.primaryColor.withOpacity(0.8)).semiBold.make(),
-                  ],
-                ),
-              ),
+              CustomAppHeader(),
               10.0.heightBox,
               "Forgot Password".text.xl3.color(Configs.grayColor).make(),
               20.0.heightBox,

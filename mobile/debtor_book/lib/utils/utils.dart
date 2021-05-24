@@ -26,8 +26,9 @@ void hideKbd(BuildContext context) {
   FocusScope.of(context).unfocus();
 }
 
-Map<String, dynamic> decodeJwtToken(jwtToken) {
-  return JwtDecoder.decode(jwtToken);
+Map<String, dynamic> decodeJwtToken() {
+  var jwtToken = Configs.prefs.getString(Configs.loginPrefs);
+  return JwtDecoder.decode(jwtToken!);
 }
 
 bool isUserLoggedIn() {
