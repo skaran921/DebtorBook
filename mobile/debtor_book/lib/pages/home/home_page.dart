@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:debtor_book/configs/config.dart';
+import 'package:debtor_book/configs/constants/route_constants.dart';
 import 'package:debtor_book/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -51,31 +52,28 @@ class HomePage extends StatelessWidget {
                             Row(
                               children: [
                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        FontAwesomeIcons.rupeeSign.toIcon(color: Configs.greenColor, size: 24),
-                                        10.0.widthBox,
-                                        "89.40".text.color(Configs.greenColor).xl3.make()
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        FontAwesomeIcons.userCircle.toIcon(color: Configs.grayColor, size: 24),
-                                        10.0.widthBox,
-                                        "3".text.color(Configs.grayColor).xl3.make()
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      {"icon": FontAwesomeIcons.rupeeSign, "value": "89.40", "color": Configs.greenColor},
+                                      {"icon": FontAwesomeIcons.userCircle, "value": "3", "color": Configs.grayColor}
+                                    ].map((item) {
+                                      return Row(
+                                        children: [
+                                          Icon(item['icon'] as IconData, color: item['color'] as Color, size: 24),
+                                          10.0.widthBox,
+                                          "${item['value']}".text.color(item['color'] as Color).xl3.make()
+                                        ],
+                                      );
+                                    }).toList()),
                                 Expanded(
                                   child: Container(),
                                 ),
                                 FloatingActionButton(
                                   heroTag: "addDebtorBtn",
                                   backgroundColor: Configs.primaryColor,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, RouteConstant.createDebtorPage);
+                                  },
                                   child: Icons.person_add.toIcon(color: Colors.white),
                                 )
                               ],
@@ -90,7 +88,9 @@ class HomePage extends StatelessWidget {
                             children: [
                               FloatingActionButton(
                                 heroTag: "rcvAmtFrmDbtBtn",
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, RouteConstant.receivedPage);
+                                },
                                 backgroundColor: Configs.whiteGrayColor,
                                 child: FontAwesomeIcons.arrowRight.toIcon(),
                               ),
@@ -103,7 +103,9 @@ class HomePage extends StatelessWidget {
                             children: [
                               FloatingActionButton(
                                 heroTag: "payAmtToDbtBtn",
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, RouteConstant.paymentPage);
+                                },
                                 backgroundColor: Configs.whiteGrayColor,
                                 child: FontAwesomeIcons.plus.toIcon(),
                               ),
