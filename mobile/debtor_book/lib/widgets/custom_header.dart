@@ -18,7 +18,7 @@ class CustomAppHeader extends StatelessWidget {
             Icons.arrow_back_ios,
             color: Configs.primaryColor.withOpacity(0.8),
           ),
-          "Login".text.color(Configs.primaryColor.withOpacity(0.8)).semiBold.make(),
+          "$title".text.color(Configs.primaryColor.withOpacity(0.8)).semiBold.make(),
         ],
       ),
     );

@@ -16,7 +16,8 @@ class CustomTextField extends StatelessWidget {
       obscureText: isObsecureText,
       style: TextStyle(color: Configs.grayColor, fontWeight: FontWeight.w400, fontSize: 16.0, fontFamily: Configs.fontFamily),
       decoration: InputDecoration(
-        hintText: "$hintText",
+        contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+        labelText: "$hintText",
       ),
     );
   }
