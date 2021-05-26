@@ -37,3 +37,7 @@ bool isUserLoggedIn() {
   }
   return false;
 }
+
+String getUserToken() {
+  return Configs.prefs.getString(Configs.loginPrefs) ?? "";
+}

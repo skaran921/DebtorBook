@@ -1,4 +1,5 @@
 import 'package:debtor_book/configs/config.dart';
+import 'package:debtor_book/utils/utils.dart';
 import 'package:debtor_book/widgets/custom_header.dart';
 import 'package:debtor_book/widgets/custom_page_header.dart';
 import 'package:debtor_book/widgets/custom_text_btn.dart';
@@ -26,13 +27,16 @@ class PaymentPage extends StatelessWidget {
               child: ListView(
                 physics: BouncingScrollPhysics(),
                 children: [
-                  CustomTextField(hintText: "Select Date"),
+                  CustomTextField(
+                    prefixIcon: FontAwesomeIcons.calendarAlt,
+                    hintText: "Select Date",
+                  ),
                   10.0.heightBox,
-                  CustomTextField(hintText: "Select Debtor"),
+                  CustomTextField(prefixIcon: FontAwesomeIcons.userAlt, hintText: "Select Debtor"),
                   10.0.heightBox,
-                  CustomTextField(hintText: "Amount In ${Configs.rupeeSign}"),
+                  CustomTextField(prefixIcon: FontAwesomeIcons.rupeeSign, hintText: "Amount"),
                   10.0.heightBox,
-                  CustomTextField(hintText: "Remarks"),
+                  CustomTextField(prefixIcon: FontAwesomeIcons.stickyNote, hintText: "Remarks"),
                   20.0.heightBox,
                   CustomTextButton(
                     text: "Save",

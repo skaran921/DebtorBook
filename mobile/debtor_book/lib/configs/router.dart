@@ -1,4 +1,5 @@
 import 'package:debtor_book/configs/constants/route_constants.dart';
+import 'package:debtor_book/pages/dashboard/dasboard_page.dart';
 import 'package:debtor_book/pages/debtors/create_debtor.dart';
 import 'package:debtor_book/pages/forgot_password/forgot_password.dart';
 import 'package:debtor_book/pages/home/home_page.dart';
@@ -26,6 +27,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return _buildRoute(CreateDebtorPage());
     case RouteConstant.settingPage:
       return _buildRoute(SettingPage());
+    case RouteConstant.dashboardPage:
+      return _buildRoute(DashboardPage());
 
     default:
       return _buildRoute(LoginPage());

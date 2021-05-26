@@ -24,7 +24,7 @@ class DebtorBookApp extends StatelessWidget {
       theme: MyThemes.lightTheme(),
       darkTheme: MyThemes.darkTheme(),
       onGenerateRoute: onGenerateRoute,
-      initialRoute: isUserLoggedIn() ? RouteConstant.homePage : RouteConstant.loginPage,
+      initialRoute: isUserLoggedIn() ? RouteConstant.dashboardPage : RouteConstant.loginPage,
     );
   }
 }
