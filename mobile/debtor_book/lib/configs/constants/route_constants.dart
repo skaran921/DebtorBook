@@ -6,4 +6,5 @@ class RouteConstant {
   static const String receivedPage = "/received";
   static const String createDebtorPage = "/createDebtor";
   static const String settingPage = "/setting";
+  static const String dashboardPage = "/dashboard";
 }

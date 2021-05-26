@@ -25,13 +25,13 @@ class ReceivedPage extends StatelessWidget {
               child: ListView(
                 physics: BouncingScrollPhysics(),
                 children: [
-                  CustomTextField(hintText: "Select Date"),
+                  CustomTextField(prefixIcon: FontAwesomeIcons.calendarAlt, hintText: "Select Date"),
                   10.0.heightBox,
-                  CustomTextField(hintText: "Select Debtor"),
+                  CustomTextField(prefixIcon: FontAwesomeIcons.userAlt, hintText: "Select Debtor"),
                   10.0.heightBox,
-                  CustomTextField(hintText: "Received Amount"),
+                  CustomTextField(prefixIcon: FontAwesomeIcons.rupeeSign, hintText: "Received Amount"),
                   10.0.heightBox,
-                  CustomTextField(hintText: "Remarks"),
+                  CustomTextField(prefixIcon: FontAwesomeIcons.stickyNote, hintText: "Remarks"),
                   20.0.heightBox,
                   CustomTextButton(
                     text: "Save",

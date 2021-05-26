@@ -5,14 +5,19 @@ import 'package:velocity_x/velocity_x.dart';
 class CustomTextButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
+  final bool isLoading;
 
-  const CustomTextButton({Key? key, required this.text, this.onPressed}) : super(key: key);
+  const CustomTextButton({Key? key, required this.text, this.onPressed, this.isLoading = false}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
             style: TextButton.styleFrom(padding: EdgeInsets.symmetric(vertical: 12.0)),
             onPressed: onPressed,
-            child: text.text.xl.fontFamily(Configs.fontFamily!).white.make())
+            child: isLoading
+                ? CircularProgressIndicator(
+                    strokeWidth: 3.0,
+                  )
+                : text.text.xl.fontFamily(Configs.fontFamily!).white.make())
         .wFull(context);
   }
 }

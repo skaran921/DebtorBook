@@ -29,7 +29,8 @@ class LoginController extends GetxController {
         isLoginLoading.value = false;
 
         /// Redirect to home page
-        Navigator.pushReplacementNamed(context, RouteConstant.homePage);
+        Navigator.pushNamedAndRemoveUntil(context, RouteConstant.dashboardPage, (Route<dynamic> route) => false);
+        // Navigator.pushReplacementNamed(context, RouteConstant.homePage);
         // CustomAlerts.simpleSuccessAlert(context, "You are successfully logged in");
       }
     }
