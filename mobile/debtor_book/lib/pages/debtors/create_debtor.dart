@@ -1,6 +1,4 @@
-import 'package:debtor_book/configs/config.dart';
 import 'package:debtor_book/controllers/debtor_controller.dart';
-import 'package:debtor_book/utils/utils.dart';
 import 'package:debtor_book/widgets/custom_header.dart';
 import 'package:debtor_book/widgets/custom_page_header.dart';
 import 'package:debtor_book/widgets/custom_text_btn.dart';
@@ -16,7 +14,7 @@ class CreateDebtorPage extends StatelessWidget {
   final TextEditingController _mobileNo = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _address = TextEditingController();
-  final _debtorController = Get.put(DebtorController());
+  final _debtorController = Get.find<DebtorController>(tag: "_debtorController");
   void handleDebtorForm(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       _debtorController.createDebtor(context, _fullName.text, _email.text, _mobileNo.text, _address.text, () {

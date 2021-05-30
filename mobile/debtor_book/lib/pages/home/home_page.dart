@@ -2,14 +2,18 @@ import 'dart:ui';
 
 import 'package:debtor_book/configs/config.dart';
 import 'package:debtor_book/configs/constants/route_constants.dart';
+import 'package:debtor_book/controllers/debtor_controller.dart';
 import 'package:debtor_book/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 var userDetails = decodeJwtToken();
 
 class HomePage extends StatelessWidget {
+  final _debtorController = Get.find<DebtorController>(tag: "_debtorController");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +59,11 @@ class HomePage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     {"icon": FontAwesomeIcons.rupeeSign, "value": "89.40", "color": Configs.greenColor},
-                                    {"icon": FontAwesomeIcons.userCircle, "value": "3", "color": Configs.grayColor}
+                                    {
+                                      "icon": FontAwesomeIcons.userCircle,
+                                      "value": "${_debtorController.totalDebtors}",
+                                      "color": Configs.grayColor
+                                    }
                                   ].map((item) {
                                     return Row(
                                       children: [
