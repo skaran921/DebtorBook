@@ -26,8 +26,8 @@ class Debtor {
   );
 
   factory Debtor.fromJson(Map<String, dynamic> json) {
-    return Debtor(json['DEBTOR_NAME'], json["DEBTOR_MOBILE"], json["DEBTOR_EMAIL"], json['DEBTOR_ADDRESS'],
-        json['DEBTOR_CREATE_DATE'], json['DEBTOR_UPDATE_DATE'], json['DEBTOR_ID']);
+    return Debtor(json['DEBTOR_ID'], json['DEBTOR_NAME'], json["DEBTOR_MOBILE"], json["DEBTOR_EMAIL"], json['DEBTOR_ADDRESS'],
+        json['DEBTOR_CREATE_DATE'], json['DEBTOR_UPDATE_DATE']);
   }
 
   Map<String, dynamic> toJson() {

@@ -1,5 +1,4 @@
-import 'package:debtor_book/configs/config.dart';
-import 'package:debtor_book/utils/utils.dart';
+import 'package:debtor_book/pages/debtors/debtor_search.dart';
 import 'package:debtor_book/widgets/custom_header.dart';
 import 'package:debtor_book/widgets/custom_page_header.dart';
 import 'package:debtor_book/widgets/custom_text_btn.dart';
@@ -32,7 +31,14 @@ class PaymentPage extends StatelessWidget {
                     hintText: "Select Date",
                   ),
                   10.0.heightBox,
-                  CustomTextField(prefixIcon: FontAwesomeIcons.userAlt, hintText: "Select Debtor"),
+                  CustomTextField(
+                    prefixIcon: FontAwesomeIcons.userAlt,
+                    hintText: "Select Debtor",
+                    readOnly: true,
+                    onTap: () {
+                      showSearch(context: context, delegate: SearchDebtor());
+                    },
+                  ),
                   10.0.heightBox,
                   CustomTextField(prefixIcon: FontAwesomeIcons.rupeeSign, hintText: "Amount"),
                   10.0.heightBox,

@@ -13,4 +13,13 @@ class DebtorRepo {
     };
     return await ApiCallHelper.post(param);
   }
+
+  // getAllActiveDebtors
+  Future<dynamic> getAllActiveDebtors() async {
+    Map<String, dynamic> param = {
+      "ROUTE": "/debtor/read",
+      'JWT': getUserToken(),
+    };
+    return await ApiCallHelper.post(param);
+  }
 }
