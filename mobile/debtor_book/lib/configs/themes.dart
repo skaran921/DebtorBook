@@ -18,6 +18,9 @@ class MyThemes {
         accentColor: Configs.primaryColor,
         fontFamily: fontFamily,
         iconTheme: IconThemeData(color: Configs.primaryColor),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Configs.whiteColor,
+        ),
         // textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(backgroundColor: Configs.primaryColor)),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
@@ -52,6 +55,21 @@ class MyThemes {
   }
 
   static ThemeData darkTheme() {
-    return ThemeData(colorScheme: ColorScheme.dark(), fontFamily: fontFamily);
+    return ThemeData(
+        colorScheme: ColorScheme.dark(),
+        fontFamily: fontFamily,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+          primary: Configs.primaryColor.withOpacity(0.7),
+          side: BorderSide.none,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+        )),
+        switchTheme: SwitchThemeData(
+            thumbColor: MaterialStateProperty.all(Configs.blackColor.withOpacity(0.6)),
+            trackColor: MaterialStateProperty.all(Configs.primaryColor.withOpacity(0.4))),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            unselectedItemColor: Configs.grayColor,
+            backgroundColor: Colors.black,
+            selectedItemColor: Configs.primaryColor.withOpacity(0.6)));
   }
 }
