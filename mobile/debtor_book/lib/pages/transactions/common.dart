@@ -1,4 +1,5 @@
 import 'package:debtor_book/models/Debtor.dart';
+import 'package:debtor_book/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:debtor_book/pages/debtors/debtor_search.dart';
 import 'package:debtor_book/widgets/custom_header.dart';
@@ -38,7 +39,7 @@ class CommonTransactionForm extends StatelessWidget {
           title: "Home",
         ),
         20.0.heightBox,
-        CustomPageHeader(icon: FontAwesomeIcons.moneyBill, label: "Payment"),
+        CustomPageHeader(icon: FontAwesomeIcons.moneyBill, label: formTypes == FormTypes.pay ? "Payment" : "Received"),
         20.0.heightBox,
         Expanded(
             child: Form(
@@ -46,22 +47,6 @@ class CommonTransactionForm extends StatelessWidget {
           child: ListView(
             physics: BouncingScrollPhysics(),
             children: [
-              CustomTextField(
-                controller: _dateController,
-                prefixIcon: FontAwesomeIcons.calendarAlt,
-                hintText: "Select Date",
-                validator: (v) {
-                  if (v!.isEmpty) return "Please Select Transaction Date";
-                  return null;
-                },
-                onTap: () async {
-                  var date = await showDatePicker(
-                      context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2050));
-                  if (date == null) return;
-                  _dateController.text = "${date.day}-${date.month}-${date.year}";
-                },
-              ),
-              10.0.heightBox,
               CustomTextField(
                 controller: _debtorController,
                 prefixIcon: FontAwesomeIcons.userAlt,
