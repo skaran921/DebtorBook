@@ -38,6 +38,7 @@ dependencies:
   get: ^4.1.4
   flutter_shimmer: ^2.0.0-prerelease-nullsafety
   shared_preferences: ^2.0.5
+  animations: ^2.0.0
 
 dev_dependencies:
   flutter_test:
