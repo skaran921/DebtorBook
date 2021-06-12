@@ -40,6 +40,9 @@ class SearchDebtor extends SearchDelegate {
                 var debtor = debtors[index];
                 var colorIndex = Colors.primaries.length / Colors.primaries.length + int.parse(debtor.debtorId);
                 return ListTile(
+                  onTap: () {
+                    Navigator.pop(context, debtor);
+                  },
                   key: ValueKey("_debtorsSearch_${debtor.debtorId}"),
                   leading: CircleAvatar(
                     backgroundColor: Colors.primaries[colorIndex.ceil()],
