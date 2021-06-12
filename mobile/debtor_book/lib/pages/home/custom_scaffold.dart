@@ -43,7 +43,6 @@ class CustomScaffold extends StatelessWidget {
           builder: (BuildContext context, int value, child) {
             return BottomNavigationBar(
               currentIndex: value,
-              backgroundColor: Configs.whiteColor,
               type: BottomNavigationBarType.fixed,
               items: [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
