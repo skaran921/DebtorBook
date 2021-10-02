@@ -15,7 +15,7 @@ class Debtors
     public function getActiveDebtors($userId = "")
     {
         if ($userId == "") $userId = $_SESSION["user_auth_id"];
-        $sql = "SELECT * FROM debtors WHERE USER_ID='$userId' AND DEBTOR_STATUS='1' ORDER BY DEBTOR_ID DESC";
+        $sql = "SELECT * FROM debtors WHERE USER_ID='$userId' AND DEBTOR_STATUS='1' ORDER BY DEBTOR_NAME ASC";
         $result = $this->conn->query($sql);
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         $this->conn->close();
