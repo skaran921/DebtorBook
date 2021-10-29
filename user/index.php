@@ -38,7 +38,7 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-user-circle gray-text"></span>
+                        <span><img src="../assets/images/user.gif" alt="" width="40px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
@@ -66,7 +66,8 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-calendar-alt gray-text"></span>
+                            <!-- <span class="fa fa-calendar-alt gray-text"></span> -->
+                            <span><img src="../assets/images/calender.gif" alt="" width="50px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
@@ -88,7 +89,7 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-clock gray-text"></span>
+                        <span><img src="../assets/images/clock.gif" alt="" width="50px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
@@ -111,7 +112,7 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-calendar-minus gray-text"></span>
+                        <span><img src="../assets/images/calender.gif" alt="" width="50px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
@@ -136,7 +137,7 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-money gray-text"></span>
+                        <span><img src="../assets/images/ruppee.gif" alt="" width="50px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
@@ -163,7 +164,7 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-rupee-sign gray-text"></span>
+                        <span><img src="../assets/images/pay.gif" alt="" width="50px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
@@ -251,7 +252,7 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-check-circle gray-text"></span>
+                        <span><img src="../assets/images/ok.gif" alt="" width="50px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
@@ -386,7 +387,7 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-bell gray-text"></span>
+                        <span><img src="../assets/images/bell.gif" alt="" width="60px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
@@ -513,7 +514,7 @@ include "./checkUserAuthentication.php";
                     <div class="dashboard-card">
                         <!-- icon -->
                         <div class="dashboard-card-icon">
-                            <span class="fa fa-cloud-upload gray-text"></span>
+                        <span><img src="../assets/images/backup.gif" alt="" width="50px;"></span>
                         </div><!-- icon -->
 
                         <div class="vr"></div>
